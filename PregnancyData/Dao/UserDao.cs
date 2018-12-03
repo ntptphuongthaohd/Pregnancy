@@ -21,7 +21,7 @@ namespace PregnancyData.Dao
 
         public preg_user GetUserByID(int id)
         {
-            return connect.preg_users.Where(c => c.ID == id).FirstOrDefault();
+            return connect.preg_users.Where(c => c.id == id).FirstOrDefault();
         }
 
         public void InsertData(preg_user item)
