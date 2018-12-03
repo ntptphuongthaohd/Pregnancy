@@ -67,6 +67,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\AnswerDao.cs" />
+    <Compile Include="Dao\PregnancyDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Entity\PregnancyEntity.cs" />
     <Compile Include="Entity\preg_answer.cs" />

@@ -17,7 +17,7 @@ namespace PregnancyData.Entity
         [StringLength(1024)]
         public string title { get; set; }
 
-        [Column(TypeName = "text")]
+        [StringLength(1024)]
         public string content { get; set; }
 
         public int? question_id { get; set; }
