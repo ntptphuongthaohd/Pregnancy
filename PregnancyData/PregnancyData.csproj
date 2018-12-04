@@ -79,6 +79,11 @@
     <Compile Include="Dao\BabyNameDao.cs" />
     <Compile Include="Dao\ContactUsDao.cs" />
     <Compile Include="Dao\CountryDao.cs" />
+    <Compile Include="Dao\ImageDao.cs" />
+    <Compile Include="Dao\ImageTypeDao.cs" />
+    <Compile Include="Dao\QuestionDao.cs" />
+    <Compile Include="Dao\SizeGuideDao.cs" />
+    <Compile Include="Dao\TimeFrameDao.cs" />
     <Compile Include="Dao\TimeLineDao.cs" />
     <Compile Include="Dao\DailyDao.cs" />
     <Compile Include="Dao\DailyLikeDao.cs" />
@@ -105,6 +110,8 @@
     <Compile Include="Dao\ToDoOtherDao.cs" />
     <Compile Include="Dao\UpgradeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
+    <Compile Include="Dao\WeekDao.cs" />
+    <Compile Include="Dao\WeeklyNoteDao.cs" />
     <Compile Include="Entity\PregnancyEntity.cs" />
     <Compile Include="Entity\preg_answer.cs" />
     <Compile Include="Entity\preg_appointment.cs" />
