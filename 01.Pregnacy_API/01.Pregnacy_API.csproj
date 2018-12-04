@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -160,13 +162,13 @@
     <Compile Include="Controllers\HelpCategoryController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LikeTypesController.cs" />
+    <Compile Include="Controllers\LikeTypeController.cs" />
     <Compile Include="Controllers\MyBellyController.cs" />
     <Compile Include="Controllers\MyBirthPlanController.cs" />
     <Compile Include="Controllers\MyWeightInStController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PhoneController.cs" />
-    <Compile Include="Controllers\PregnancysController.cs" />
+    <Compile Include="Controllers\PregnancyController.cs" />
     <Compile Include="Controllers\ProfessionController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />

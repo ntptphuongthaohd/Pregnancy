@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace _01.Pregnacy_API.Controllers
 {
-    public class LikeTypesController : ApiController
+    public class LikeTypeController : ApiController
     {
         LikeTypeDao dao = new LikeTypeDao();
         // GET api/values

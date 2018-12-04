@@ -16,7 +16,7 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-	public class MyWeightInStsController : ApiController
+	public class MyWeightInStController : ApiController
 	{
 		MyWeightInStDao dao = new MyWeightInStDao();
 		// GET api/values
