@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections;
+﻿using PregnancyData.Dao;
+using PregnancyData.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using PregnancyData.Entity;
-using System.Text;
-using System.Security.Cryptography;
-using PregnancyData.Dao;
 
 namespace _01.Pregnacy_API.Controllers
 {
-
-    public class GendersController : ApiController
+    public class AuthController : ApiController
     {
-        GenderDao dao = new GenderDao();
+        AuthDao dao = new AuthDao();
         // GET api/values
-        public IEnumerable<preg_gender> Get()
+        public IEnumerable<preg_auth> Get()
         {
             try
             {
@@ -30,11 +23,11 @@ namespace _01.Pregnacy_API.Controllers
             {
                 throw ex;
             }
-           
+
         }
 
         // GET api/values/5
-        public preg_gender Get(int id)
+        public preg_auth Get(int id)
         {
             try
             {
@@ -47,28 +40,33 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]preg_gender gender)
+        public void Post([FromBody]preg_auth auth)
         {
-           try{
-				//gender.password = MD5Hash(user.password);
-               dao.InsertData(gender);
+            try
+            {
+                dao.InsertData(auth);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-      
+
+
         // PUT api/values/5
-        public void Put(int id, [FromBody]preg_gender genderUpdate)
+        public void Put(int id, [FromBody]preg_auth authUpdate)
         {
-            //lstStrings[id] = value;
+
             try
             {
-                preg_gender gender = new preg_gender();
-                gender = dao.GetItemByID(id);
-                gender.gender = genderUpdate.gender;
-                dao.UpdateData(gender);
+				preg_auth auth = new preg_auth();
+                auth = dao.GetItemByID(id);
+                auth.user_id = authUpdate.user_id;
+                auth.token = authUpdate.token;
+                auth.valid_to = authUpdate.valid_to;
+
+
+                dao.UpdateData(auth);
             }
             catch (Exception ex)
             {

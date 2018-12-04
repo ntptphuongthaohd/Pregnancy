@@ -16,11 +16,11 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-    public class GendersController : ApiController
+    public class MyBellysController : ApiController
     {
-        GenderDao dao = new GenderDao();
+        MyBellyDao dao = new MyBellyDao();
         // GET api/values
-        public IEnumerable<preg_gender> Get()
+        public IEnumerable<preg_my_belly> Get()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // GET api/values/5
-        public preg_gender Get(int id)
+        public preg_my_belly Get(int id)
         {
             try
             {
@@ -47,11 +47,11 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]preg_gender gender)
+        public void Post([FromBody]preg_my_belly my_belly)
         {
            try{
-				//gender.password = MD5Hash(user.password);
-               dao.InsertData(gender);
+				//MyBelly.password = MD5Hash(user.password);
+               dao.InsertData(my_belly);
             }
             catch (Exception ex)
             {
@@ -60,15 +60,18 @@ namespace _01.Pregnacy_API.Controllers
         }
       
         // PUT api/values/5
-        public void Put(int id, [FromBody]preg_gender genderUpdate)
+        public void Put(int id, [FromBody]preg_my_belly MyBellyUpdate)
         {
             //lstStrings[id] = value;
             try
             {
-                preg_gender gender = new preg_gender();
-                gender = dao.GetItemByID(id);
-                gender.gender = genderUpdate.gender;
-                dao.UpdateData(gender);
+                preg_my_belly phone = new preg_my_belly();
+                phone = dao.GetItemByID(id);
+                phone.image = MyBellyUpdate.image;
+                phone.my_belly_type_id = MyBellyUpdate.my_belly_type_id;
+                phone.month = MyBellyUpdate.month;	
+                phone.user_id = MyBellyUpdate.user_id;	
+                dao.UpdateData(phone);
             }
             catch (Exception ex)
             {

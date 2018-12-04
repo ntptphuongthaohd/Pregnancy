@@ -16,11 +16,11 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-    public class GendersController : ApiController
+    public class PhonesController : ApiController
     {
-        GenderDao dao = new GenderDao();
+        PhoneDao dao = new PhoneDao();
         // GET api/values
-        public IEnumerable<preg_gender> Get()
+        public IEnumerable<preg_phone> Get()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // GET api/values/5
-        public preg_gender Get(int id)
+        public preg_phone Get(int id)
         {
             try
             {
@@ -47,11 +47,11 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]preg_gender gender)
+        public void Post([FromBody]preg_phone phone)
         {
            try{
-				//gender.password = MD5Hash(user.password);
-               dao.InsertData(gender);
+				//Phone.password = MD5Hash(user.password);
+               dao.InsertData(phone);
             }
             catch (Exception ex)
             {
@@ -60,15 +60,17 @@ namespace _01.Pregnacy_API.Controllers
         }
       
         // PUT api/values/5
-        public void Put(int id, [FromBody]preg_gender genderUpdate)
+        public void Put(int id, [FromBody]preg_phone PhoneUpdate)
         {
             //lstStrings[id] = value;
             try
             {
-                preg_gender gender = new preg_gender();
-                gender = dao.GetItemByID(id);
-                gender.gender = genderUpdate.gender;
-                dao.UpdateData(gender);
+                preg_phone phone = new preg_phone();
+                phone = dao.GetItemByID(id);
+                phone.profession_id = PhoneUpdate.profession_id;
+                phone.phone_number = PhoneUpdate.phone_number;
+                phone.user_id = PhoneUpdate.user_id;	
+                dao.UpdateData(phone);
             }
             catch (Exception ex)
             {

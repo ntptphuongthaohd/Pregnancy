@@ -14,12 +14,12 @@ namespace PregnancyData.Dao
             connect = new PregnancyEntity();
         }
 
-        public IEnumerable<preg_gender> GetListGender()
+        public IEnumerable<preg_gender> GetListItem()
         {
             return connect.preg_genders;
         }
 
-        public preg_gender GetGenderByID(int id)
+        public preg_gender GetItemByID(int id)
         {
             return connect.preg_genders.Where(c => c.id == id).FirstOrDefault();
         }
@@ -37,7 +37,7 @@ namespace PregnancyData.Dao
 
         public void DeleteData(int id)
         {
-            preg_gender gender = GetGenderByID(id);
+            preg_gender gender = GetItemByID(id);
             connect.preg_genders.Remove(gender);
             connect.SaveChanges();
         }
