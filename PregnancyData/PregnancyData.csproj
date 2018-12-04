@@ -68,15 +68,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\AnswerDao.cs" />
+    <Compile Include="Dao\AppointmentBabyHeartDao.cs" />
+    <Compile Include="Dao\AppointmentBpDiaDao.cs" />
+    <Compile Include="Dao\AppointmentBpSysDao.cs" />
+    <Compile Include="Dao\AppointmentDao.cs" />
+    <Compile Include="Dao\AppointmentTypeDao.cs" />
+    <Compile Include="Dao\AuthDao.cs" />
+    <Compile Include="Dao\BabyNameDao.cs" />
     <Compile Include="Dao\ContactUsDao.cs" />
+    <Compile Include="Dao\CountryDao.cs" />
     <Compile Include="Dao\DailyDao.cs" />
     <Compile Include="Dao\DailyLikeDao.cs" />
     <Compile Include="Dao\DailyTypeDao.cs" />
     <Compile Include="Dao\GenderDao.cs" />
+    <Compile Include="Dao\HelpCategoryDao.cs" />
+    <Compile Include="Dao\HelpDao.cs" />
     <Compile Include="Dao\LikeTypeDao.cs" />
+    <Compile Include="Dao\MyBellyDao.cs" />
+    <Compile Include="Dao\MyBirthPlanDao.cs" />
+    <Compile Include="Dao\MyBirthPlanTypeDao.cs" />
+    <Compile Include="Dao\MyWeightInStDao.cs" />
     <Compile Include="Dao\PageDao.cs" />
+    <Compile Include="Dao\PhoneDao.cs" />
     <Compile Include="Dao\PregnancyDao.cs" />
+    <Compile Include="Dao\ProfessionDao.cs" />
     <Compile Include="Dao\SettingDao.cs" />
+    <Compile Include="Dao\TodoDao.cs" />
+    <Compile Include="Dao\ToDoOtherDao.cs" />
     <Compile Include="Dao\UpgradeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Entity\PregnancyEntity.cs" />
