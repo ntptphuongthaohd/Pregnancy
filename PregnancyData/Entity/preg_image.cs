@@ -19,10 +19,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_image_type preg_image_type { get; set; }
 
-        public virtual preg_image_type preg_image_type1 { get; set; }
-
         public virtual preg_week preg_week { get; set; }
-
-        public virtual preg_week preg_week1 { get; set; }
     }
 }

@@ -22,10 +22,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_user preg_user { get; set; }
 
-        public virtual preg_user preg_user1 { get; set; }
-
         public virtual preg_week preg_week { get; set; }
-
-        public virtual preg_week preg_week1 { get; set; }
     }
 }

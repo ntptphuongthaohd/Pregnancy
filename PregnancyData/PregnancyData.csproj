@@ -68,7 +68,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\AnswerDao.cs" />
+    <Compile Include="Dao\ContactUsDao.cs" />
+    <Compile Include="Dao\DailyDao.cs" />
+    <Compile Include="Dao\DailyLikeDao.cs" />
+    <Compile Include="Dao\DailyTypeDao.cs" />
+    <Compile Include="Dao\GenderDao.cs" />
+    <Compile Include="Dao\LikeTypeDao.cs" />
+    <Compile Include="Dao\PageDao.cs" />
     <Compile Include="Dao\PregnancyDao.cs" />
+    <Compile Include="Dao\SettingDao.cs" />
+    <Compile Include="Dao\UpgradeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Entity\PregnancyEntity.cs" />
     <Compile Include="Entity\preg_answer.cs" />

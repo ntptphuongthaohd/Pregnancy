@@ -12,36 +12,22 @@ namespace PregnancyData.Entity
         public preg_user()
         {
             preg_answer = new HashSet<preg_answer>();
-            preg_answer1 = new HashSet<preg_answer>();
             preg_appointment = new HashSet<preg_appointment>();
-            preg_appointment1 = new HashSet<preg_appointment>();
             preg_auth = new HashSet<preg_auth>();
-            preg_auth1 = new HashSet<preg_auth>();
             preg_baby_name = new HashSet<preg_baby_name>();
-            preg_baby_name1 = new HashSet<preg_baby_name>();
             preg_cotact_us = new HashSet<preg_cotact_us>();
-            preg_cotact_us1 = new HashSet<preg_cotact_us>();
             preg_daily_like = new HashSet<preg_daily_like>();
-            preg_daily_like1 = new HashSet<preg_daily_like>();
             preg_my_belly = new HashSet<preg_my_belly>();
-            preg_my_belly1 = new HashSet<preg_my_belly>();
             preg_my_birth_plan = new HashSet<preg_my_birth_plan>();
-            preg_my_birth_plan1 = new HashSet<preg_my_birth_plan>();
             preg_my_weight = new HashSet<preg_my_weight>();
-            preg_my_weight1 = new HashSet<preg_my_weight>();
             preg_phone = new HashSet<preg_phone>();
-            preg_phone1 = new HashSet<preg_phone>();
             preg_pregnancy = new HashSet<preg_pregnancy>();
             preg_question = new HashSet<preg_question>();
-            preg_question1 = new HashSet<preg_question>();
             preg_setting = new HashSet<preg_setting>();
             preg_todo = new HashSet<preg_todo>();
-            preg_todo1 = new HashSet<preg_todo>();
             preg_todo_other = new HashSet<preg_todo_other>();
-            preg_todo_other1 = new HashSet<preg_todo_other>();
             preg_upgrade = new HashSet<preg_upgrade>();
             preg_weekly_note = new HashSet<preg_weekly_note>();
-            preg_weekly_note1 = new HashSet<preg_weekly_note>();
         }
 
         public int id { get; set; }
@@ -77,61 +63,31 @@ namespace PregnancyData.Entity
         public virtual ICollection<preg_answer> preg_answer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_answer> preg_answer1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_appointment> preg_appointment { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_appointment> preg_appointment1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_auth> preg_auth { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_auth> preg_auth1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_baby_name> preg_baby_name { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_baby_name> preg_baby_name1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_cotact_us> preg_cotact_us { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_cotact_us> preg_cotact_us1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_daily_like> preg_daily_like { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_daily_like> preg_daily_like1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_belly> preg_my_belly { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_belly> preg_my_belly1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_birth_plan> preg_my_birth_plan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_birth_plan> preg_my_birth_plan1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_weight> preg_my_weight { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_weight> preg_my_weight1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_phone> preg_phone { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_phone> preg_phone1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_pregnancy> preg_pregnancy { get; set; }
@@ -140,30 +96,18 @@ namespace PregnancyData.Entity
         public virtual ICollection<preg_question> preg_question { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_question> preg_question1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_setting> preg_setting { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_todo> preg_todo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_todo> preg_todo1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_todo_other> preg_todo_other { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_todo_other> preg_todo_other1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_upgrade> preg_upgrade { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_weekly_note> preg_weekly_note { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_weekly_note> preg_weekly_note1 { get; set; }
     }
 }

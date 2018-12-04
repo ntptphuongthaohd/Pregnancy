@@ -64,8 +64,6 @@ namespace _01.Pregnacy_API.Controllers
                 answer.answerdate = answerUpdate.answerdate;
                 answer.content = answerUpdate.content;
                 answer.preg_user = answerUpdate.preg_user;
-                answer.preg_user1 = answerUpdate.preg_user1;
-                answer.preg_user = answerUpdate.preg_user;
                 answer.question_id = answerUpdate.question_id;
                 answer.title = answerUpdate.title;
                 answer.user_id = answerUpdate.user_id;

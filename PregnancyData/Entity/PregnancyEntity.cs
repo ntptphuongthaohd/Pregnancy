@@ -43,7 +43,6 @@ namespace PregnancyData.Entity
         public virtual DbSet<preg_page> preg_pages { get; set; }
         public virtual DbSet<preg_phone> preg_phones { get; set; }
         public virtual DbSet<preg_pregnancy> preg_pregnancys { get; set; }
-        public virtual DbSet<preg_pregnancy_detail> preg_pregnancy_details { get; set; }
         public virtual DbSet<preg_profession> preg_professions { get; set; }
         public virtual DbSet<preg_question> preg_questions { get; set; }
         public virtual DbSet<preg_setting> preg_settings { get; set; }
@@ -80,11 +79,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_appointment_baby_heart)
                 .HasForeignKey(e => e.appointment_baby_heart_id);
 
-            modelBuilder.Entity<preg_appointment_baby_heart>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_appointment_baby_heart1)
-                .HasForeignKey(e => e.appointment_baby_heart_id);
-
             modelBuilder.Entity<preg_appointment_bp_dia>()
                 .Property(e => e.value)
                 .IsUnicode(false);
@@ -94,11 +88,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_appointment_bp_dia)
                 .HasForeignKey(e => e.appointment_bp_dia_id);
 
-            modelBuilder.Entity<preg_appointment_bp_dia>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_appointment_bp_dia1)
-                .HasForeignKey(e => e.appointment_bp_dia_id);
-
             modelBuilder.Entity<preg_appointment_bp_sys>()
                 .Property(e => e.value)
                 .IsUnicode(false);
@@ -106,12 +95,7 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_appointment_bp_sys>()
                 .HasMany(e => e.preg_appointment)
                 .WithOptional(e => e.preg_appointment_bp_sys)
-                .HasForeignKey(e => e.appointment_bp_dia_id);
-
-            modelBuilder.Entity<preg_appointment_bp_sys>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_appointment_bp_sys1)
-                .HasForeignKey(e => e.appointment_bp_dia_id);
+                .HasForeignKey(e => e.appointment_bp_sys_id);
 
             modelBuilder.Entity<preg_appointment_type>()
                 .Property(e => e.type)
@@ -120,11 +104,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_appointment_type>()
                 .HasMany(e => e.preg_appointment)
                 .WithOptional(e => e.preg_appointment_type)
-                .HasForeignKey(e => e.appointment_type_id);
-
-            modelBuilder.Entity<preg_appointment_type>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_appointment_type1)
                 .HasForeignKey(e => e.appointment_type_id);
 
             modelBuilder.Entity<preg_auth>()
@@ -156,11 +135,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_country)
                 .HasForeignKey(e => e.preg_country_id);
 
-            modelBuilder.Entity<preg_country>()
-                .HasMany(e => e.preg_baby_name1)
-                .WithOptional(e => e.preg_country1)
-                .HasForeignKey(e => e.preg_country_id);
-
             modelBuilder.Entity<preg_daily>()
                 .Property(e => e.title)
                 .IsUnicode(false);
@@ -186,19 +160,9 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_daily)
                 .HasForeignKey(e => e.daily_id);
 
-            modelBuilder.Entity<preg_daily>()
-                .HasMany(e => e.preg_daily_like1)
-                .WithOptional(e => e.preg_daily1)
-                .HasForeignKey(e => e.daily_id);
-
             modelBuilder.Entity<preg_daily_type>()
                 .HasMany(e => e.preg_daily)
                 .WithOptional(e => e.preg_daily_type)
-                .HasForeignKey(e => e.daily_type_id);
-
-            modelBuilder.Entity<preg_daily_type>()
-                .HasMany(e => e.preg_daily1)
-                .WithOptional(e => e.preg_daily_type1)
                 .HasForeignKey(e => e.daily_type_id);
 
             modelBuilder.Entity<preg_gender>()
@@ -210,11 +174,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_gender)
                 .HasForeignKey(e => e.preg_gender_id);
 
-            modelBuilder.Entity<preg_gender>()
-                .HasMany(e => e.preg_baby_name1)
-                .WithOptional(e => e.preg_gender1)
-                .HasForeignKey(e => e.preg_gender_id);
-
             modelBuilder.Entity<preg_guides_type>()
                 .Property(e => e.type)
                 .IsUnicode(false);
@@ -222,11 +181,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_guides_type>()
                 .HasMany(e => e.preg_guides)
                 .WithOptional(e => e.preg_guides_type)
-                .HasForeignKey(e => e.guides_type_id);
-
-            modelBuilder.Entity<preg_guides_type>()
-                .HasMany(e => e.preg_guides1)
-                .WithOptional(e => e.preg_guides_type1)
                 .HasForeignKey(e => e.guides_type_id);
 
             modelBuilder.Entity<preg_help>()
@@ -250,11 +204,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_help_category)
                 .HasForeignKey(e => e.help_category_id);
 
-            modelBuilder.Entity<preg_help_category>()
-                .HasMany(e => e.preg_help1)
-                .WithOptional(e => e.preg_help_category1)
-                .HasForeignKey(e => e.help_category_id);
-
             modelBuilder.Entity<preg_image>()
                 .Property(e => e.image)
                 .IsUnicode(false);
@@ -268,11 +217,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_image_type)
                 .HasForeignKey(e => e.image_type_id);
 
-            modelBuilder.Entity<preg_image_type>()
-                .HasMany(e => e.preg_image1)
-                .WithOptional(e => e.preg_image_type1)
-                .HasForeignKey(e => e.image_type_id);
-
             modelBuilder.Entity<preg_like_type>()
                 .Property(e => e.type)
                 .IsUnicode(false);
@@ -280,11 +224,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_like_type>()
                 .HasMany(e => e.preg_daily_like)
                 .WithOptional(e => e.preg_like_type)
-                .HasForeignKey(e => e.like_type_id);
-
-            modelBuilder.Entity<preg_like_type>()
-                .HasMany(e => e.preg_daily_like1)
-                .WithOptional(e => e.preg_like_type1)
                 .HasForeignKey(e => e.like_type_id);
 
             modelBuilder.Entity<preg_my_belly>()
@@ -298,11 +237,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_my_belly_type>()
                 .HasMany(e => e.preg_my_belly)
                 .WithOptional(e => e.preg_my_belly_type)
-                .HasForeignKey(e => e.my_belly_type_id);
-
-            modelBuilder.Entity<preg_my_belly_type>()
-                .HasMany(e => e.preg_my_belly1)
-                .WithOptional(e => e.preg_my_belly_type1)
                 .HasForeignKey(e => e.my_belly_type_id);
 
             modelBuilder.Entity<preg_my_birth_plan>()
@@ -322,11 +256,6 @@ namespace PregnancyData.Entity
                 .WithOptional(e => e.preg_my_birth_plan_type)
                 .HasForeignKey(e => e.my_birth_plan_type_id);
 
-            modelBuilder.Entity<preg_my_birth_plan_type>()
-                .HasMany(e => e.preg_my_birth_plan1)
-                .WithOptional(e => e.preg_my_birth_plan_type1)
-                .HasForeignKey(e => e.my_birth_plan_type_id);
-
             modelBuilder.Entity<preg_my_weight_type>()
                 .Property(e => e.type)
                 .IsUnicode(false);
@@ -337,18 +266,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.my_weight_type_id);
 
             modelBuilder.Entity<preg_my_weight_type>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_my_weight_type1)
-                .HasForeignKey(e => e.my_weight_type_id);
-
-            modelBuilder.Entity<preg_my_weight_type>()
                 .HasMany(e => e.preg_my_weight)
                 .WithOptional(e => e.preg_my_weight_type)
-                .HasForeignKey(e => e.my_weight_type_id);
-
-            modelBuilder.Entity<preg_my_weight_type>()
-                .HasMany(e => e.preg_my_weight1)
-                .WithOptional(e => e.preg_my_weight_type1)
                 .HasForeignKey(e => e.my_weight_type_id);
 
             modelBuilder.Entity<preg_page>()
@@ -374,18 +293,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.profession_id);
 
             modelBuilder.Entity<preg_profession>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_profession1)
-                .HasForeignKey(e => e.profession_id);
-
-            modelBuilder.Entity<preg_profession>()
                 .HasMany(e => e.preg_phone)
                 .WithOptional(e => e.preg_profession)
-                .HasForeignKey(e => e.profession_id);
-
-            modelBuilder.Entity<preg_profession>()
-                .HasMany(e => e.preg_phone1)
-                .WithOptional(e => e.preg_profession1)
                 .HasForeignKey(e => e.profession_id);
 
             modelBuilder.Entity<preg_question>()
@@ -395,6 +304,11 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_question>()
                 .Property(e => e.content)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<preg_question>()
+                .HasMany(e => e.preg_answer)
+                .WithOptional(e => e.preg_question)
+                .HasForeignKey(e => e.question_id);
 
             modelBuilder.Entity<preg_size_guide>()
                 .Property(e => e.image)
@@ -415,11 +329,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_time_frame>()
                 .HasMany(e => e.preg_time_line)
                 .WithOptional(e => e.preg_time_frame)
-                .HasForeignKey(e => e.time_line_id);
-
-            modelBuilder.Entity<preg_time_frame>()
-                .HasMany(e => e.preg_time_line1)
-                .WithOptional(e => e.preg_time_frame1)
                 .HasForeignKey(e => e.time_line_id);
 
             modelBuilder.Entity<preg_time_line>()
@@ -492,18 +401,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_answer1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_appointment)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_appointment1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -512,18 +411,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_auth1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_baby_name)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_baby_name1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -532,18 +421,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_cotact_us1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_daily_like)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_daily_like1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -552,18 +431,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_my_belly1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_my_birth_plan)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_my_birth_plan1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -572,18 +441,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_my_weight1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_phone)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_phone1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -597,11 +456,6 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_question1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_setting)
                 .WithOptional(e => e.preg_user)
                 .HasForeignKey(e => e.user_id);
@@ -612,18 +466,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_todo1)
-                .WithOptional(e => e.preg_user1)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_todo_other)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_todo_other1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_user>()
@@ -634,11 +478,6 @@ namespace PregnancyData.Entity
             modelBuilder.Entity<preg_user>()
                 .HasMany(e => e.preg_weekly_note)
                 .WithOptional(e => e.preg_user)
-                .HasForeignKey(e => e.user_id);
-
-            modelBuilder.Entity<preg_user>()
-                .HasMany(e => e.preg_weekly_note1)
-                .WithOptional(e => e.preg_user1)
                 .HasForeignKey(e => e.user_id);
 
             modelBuilder.Entity<preg_week>()
@@ -663,11 +502,6 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.week_id);
 
             modelBuilder.Entity<preg_week>()
-                .HasMany(e => e.preg_image1)
-                .WithOptional(e => e.preg_week1)
-                .HasForeignKey(e => e.week_id);
-
-            modelBuilder.Entity<preg_week>()
                 .HasMany(e => e.preg_time_line)
                 .WithOptional(e => e.preg_week)
                 .HasForeignKey(e => e.week_id);
@@ -678,18 +512,8 @@ namespace PregnancyData.Entity
                 .HasForeignKey(e => e.week_id);
 
             modelBuilder.Entity<preg_week>()
-                .HasMany(e => e.preg_todo1)
-                .WithOptional(e => e.preg_week1)
-                .HasForeignKey(e => e.week_id);
-
-            modelBuilder.Entity<preg_week>()
                 .HasMany(e => e.preg_weekly_note)
                 .WithOptional(e => e.preg_week)
-                .HasForeignKey(e => e.week_id);
-
-            modelBuilder.Entity<preg_week>()
-                .HasMany(e => e.preg_weekly_note1)
-                .WithOptional(e => e.preg_week1)
                 .HasForeignKey(e => e.week_id);
 
             modelBuilder.Entity<preg_weekly_note>()

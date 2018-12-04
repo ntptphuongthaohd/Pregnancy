@@ -25,8 +25,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_time_frame preg_time_frame { get; set; }
 
-        public virtual preg_time_frame preg_time_frame1 { get; set; }
-
         public virtual preg_week preg_week { get; set; }
     }
 }

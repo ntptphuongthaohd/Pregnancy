@@ -12,9 +12,7 @@ namespace PregnancyData.Entity
         public preg_my_weight_type()
         {
             preg_appointment = new HashSet<preg_appointment>();
-            preg_appointment1 = new HashSet<preg_appointment>();
             preg_my_weight = new HashSet<preg_my_weight>();
-            preg_my_weight1 = new HashSet<preg_my_weight>();
         }
 
         public int id { get; set; }
@@ -26,12 +24,6 @@ namespace PregnancyData.Entity
         public virtual ICollection<preg_appointment> preg_appointment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_appointment> preg_appointment1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_weight> preg_my_weight { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_weight> preg_my_weight1 { get; set; }
     }
 }

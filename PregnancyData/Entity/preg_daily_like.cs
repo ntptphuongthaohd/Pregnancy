@@ -18,14 +18,8 @@ namespace PregnancyData.Entity
 
         public virtual preg_daily preg_daily { get; set; }
 
-        public virtual preg_daily preg_daily1 { get; set; }
-
         public virtual preg_like_type preg_like_type { get; set; }
 
-        public virtual preg_like_type preg_like_type1 { get; set; }
-
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

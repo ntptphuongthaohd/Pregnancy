@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_my_birth_plan_type()
         {
             preg_my_birth_plan = new HashSet<preg_my_birth_plan>();
-            preg_my_birth_plan1 = new HashSet<preg_my_birth_plan>();
         }
 
         public int id { get; set; }
@@ -22,8 +21,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_birth_plan> preg_my_birth_plan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_birth_plan> preg_my_birth_plan1 { get; set; }
     }
 }

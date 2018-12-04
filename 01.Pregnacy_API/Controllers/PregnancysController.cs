@@ -17,7 +17,7 @@ namespace _01.Pregnacy_API.Controllers
         {
             try
             {
-                return dao.GetListUser();
+                return dao.GetListItem();
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace _01.Pregnacy_API.Controllers
         {
             try
             {
-                return dao.GetUserByID(id);
+                return dao.GetItemByID(id);
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace _01.Pregnacy_API.Controllers
             try
             {
                 preg_pregnancy pregnancy = new preg_pregnancy();
-                pregnancy = dao.GetUserByID(id);
+                pregnancy = dao.GetItemByID(id);
                 pregnancy.user_id = pregnancyUpdate.user_id;
                 pregnancy.baby_already_bom = pregnancyUpdate.baby_already_bom;
                 pregnancy.baby_gender = pregnancyUpdate.baby_gender;

@@ -19,7 +19,5 @@ namespace PregnancyData.Entity
         public string message { get; set; }
 
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

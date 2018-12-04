@@ -22,8 +22,8 @@ namespace PregnancyData.Entity
 
         public int? question_id { get; set; }
 
-        public virtual preg_user preg_user { get; set; }
+        public virtual preg_question preg_question { get; set; }
 
-        public virtual preg_user preg_user1 { get; set; }
+        public virtual preg_user preg_user { get; set; }
     }
 }

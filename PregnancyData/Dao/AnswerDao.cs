@@ -37,8 +37,8 @@ namespace PregnancyData.Dao
 
         public void DeleteData(int id)
         {
-            preg_answer user = GetItemByID(id);
-            connect.preg_answers.Remove(user);
+            preg_answer item = GetItemByID(id);
+            connect.preg_answers.Remove(item);
             connect.SaveChanges();
         }
 

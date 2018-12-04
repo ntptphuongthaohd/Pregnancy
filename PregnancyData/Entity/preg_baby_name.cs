@@ -23,12 +23,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_country preg_country { get; set; }
 
-        public virtual preg_gender preg_gender1 { get; set; }
-
-        public virtual preg_country preg_country1 { get; set; }
-
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

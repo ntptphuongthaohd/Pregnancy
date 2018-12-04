@@ -16,8 +16,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_guides_type preg_guides_type { get; set; }
 
-        public virtual preg_guides_type preg_guides_type1 { get; set; }
-
         public virtual preg_page preg_page { get; set; }
     }
 }

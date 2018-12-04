@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_daily_type()
         {
             preg_daily = new HashSet<preg_daily>();
-            preg_daily1 = new HashSet<preg_daily>();
         }
 
         public int id { get; set; }
@@ -21,8 +20,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_daily> preg_daily { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_daily> preg_daily1 { get; set; }
     }
 }

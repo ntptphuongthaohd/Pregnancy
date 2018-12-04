@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_guides_type()
         {
             preg_guides = new HashSet<preg_guides>();
-            preg_guides1 = new HashSet<preg_guides>();
         }
 
         public int id { get; set; }
@@ -22,8 +21,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_guides> preg_guides { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_guides> preg_guides1 { get; set; }
     }
 }

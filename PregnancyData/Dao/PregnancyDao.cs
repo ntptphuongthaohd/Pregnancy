@@ -14,12 +14,12 @@ namespace PregnancyData.Dao
             connect = new PregnancyEntity();
         }
 
-        public IEnumerable<preg_pregnancy> GetListUser()
+        public IEnumerable<preg_pregnancy> GetListItem()
         {
             return connect.preg_pregnancys;
         }
 
-        public preg_pregnancy GetUserByID(int id)
+        public preg_pregnancy GetItemByID(int id)
         {
             return connect.preg_pregnancys.Where(c => c.id == id).FirstOrDefault();
         }
@@ -37,8 +37,8 @@ namespace PregnancyData.Dao
 
         public void DeleteData(int id)
         {
-            preg_pregnancy user = GetUserByID(id);
-            connect.preg_pregnancys.Remove(user);
+            preg_pregnancy item = GetItemByID(id);
+            connect.preg_pregnancys.Remove(item);
             connect.SaveChanges();
         }
 

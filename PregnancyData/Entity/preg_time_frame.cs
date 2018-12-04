@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_time_frame()
         {
             preg_time_line = new HashSet<preg_time_line>();
-            preg_time_line1 = new HashSet<preg_time_line>();
         }
 
         public int id { get; set; }
@@ -22,8 +21,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_time_line> preg_time_line { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_time_line> preg_time_line1 { get; set; }
     }
 }

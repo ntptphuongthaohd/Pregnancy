@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_image_type()
         {
             preg_image = new HashSet<preg_image>();
-            preg_image1 = new HashSet<preg_image>();
         }
 
         public int id { get; set; }
@@ -22,8 +21,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_image> preg_image { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_image> preg_image1 { get; set; }
     }
 }

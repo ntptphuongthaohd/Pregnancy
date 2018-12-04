@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_my_belly_type()
         {
             preg_my_belly = new HashSet<preg_my_belly>();
-            preg_my_belly1 = new HashSet<preg_my_belly>();
         }
 
         public int id { get; set; }
@@ -22,8 +21,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_my_belly> preg_my_belly { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_my_belly> preg_my_belly1 { get; set; }
     }
 }

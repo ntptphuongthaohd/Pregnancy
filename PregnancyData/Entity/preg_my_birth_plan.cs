@@ -22,10 +22,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_my_birth_plan_type preg_my_birth_plan_type { get; set; }
 
-        public virtual preg_my_birth_plan_type preg_my_birth_plan_type1 { get; set; }
-
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

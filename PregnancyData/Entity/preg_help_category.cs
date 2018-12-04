@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_help_category()
         {
             preg_help = new HashSet<preg_help>();
-            preg_help1 = new HashSet<preg_help>();
         }
 
         public int id { get; set; }
@@ -27,8 +26,5 @@ namespace PregnancyData.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_help> preg_help { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_help> preg_help1 { get; set; }
     }
 }

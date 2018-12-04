@@ -12,7 +12,6 @@ namespace PregnancyData.Entity
         public preg_daily()
         {
             preg_daily_like = new HashSet<preg_daily_like>();
-            preg_daily_like1 = new HashSet<preg_daily_like>();
         }
 
         public int id { get; set; }
@@ -34,14 +33,9 @@ namespace PregnancyData.Entity
         [StringLength(1024)]
         public string daily_relation { get; set; }
 
-        public virtual preg_daily_type preg_daily_type { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<preg_daily_like> preg_daily_like { get; set; }
 
-        public virtual preg_daily_type preg_daily_type1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<preg_daily_like> preg_daily_like1 { get; set; }
+        public virtual preg_daily_type preg_daily_type { get; set; }
     }
 }

@@ -46,24 +46,10 @@ namespace PregnancyData.Entity
 
         public virtual preg_appointment_type preg_appointment_type { get; set; }
 
-        public virtual preg_appointment_baby_heart preg_appointment_baby_heart1 { get; set; }
-
-        public virtual preg_appointment_bp_sys preg_appointment_bp_sys1 { get; set; }
-
-        public virtual preg_appointment_bp_dia preg_appointment_bp_dia1 { get; set; }
-
-        public virtual preg_appointment_type preg_appointment_type1 { get; set; }
-
         public virtual preg_my_weight_type preg_my_weight_type { get; set; }
-
-        public virtual preg_my_weight_type preg_my_weight_type1 { get; set; }
 
         public virtual preg_profession preg_profession { get; set; }
 
-        public virtual preg_profession preg_profession1 { get; set; }
-
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

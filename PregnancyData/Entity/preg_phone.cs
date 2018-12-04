@@ -19,10 +19,6 @@ namespace PregnancyData.Entity
 
         public virtual preg_profession preg_profession { get; set; }
 
-        public virtual preg_profession preg_profession1 { get; set; }
-
         public virtual preg_user preg_user { get; set; }
-
-        public virtual preg_user preg_user1 { get; set; }
     }
 }

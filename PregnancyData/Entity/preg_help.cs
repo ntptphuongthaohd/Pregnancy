@@ -19,7 +19,5 @@ namespace PregnancyData.Entity
         public string description { get; set; }
 
         public virtual preg_help_category preg_help_category { get; set; }
-
-        public virtual preg_help_category preg_help_category1 { get; set; }
     }
 }
