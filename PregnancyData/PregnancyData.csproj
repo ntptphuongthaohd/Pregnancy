@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,16 +79,22 @@
     <Compile Include="Dao\BabyNameDao.cs" />
     <Compile Include="Dao\ContactUsDao.cs" />
     <Compile Include="Dao\CountryDao.cs" />
+    <Compile Include="Dao\TimeLineDao.cs" />
     <Compile Include="Dao\DailyDao.cs" />
     <Compile Include="Dao\DailyLikeDao.cs" />
     <Compile Include="Dao\DailyTypeDao.cs" />
     <Compile Include="Dao\GenderDao.cs" />
+    <Compile Include="Dao\GuidesTypeDao.cs" />
     <Compile Include="Dao\HelpCategoryDao.cs" />
     <Compile Include="Dao\HelpDao.cs" />
     <Compile Include="Dao\LikeTypeDao.cs" />
+    <Compile Include="Dao\MyBellyTypeDao.cs" />
     <Compile Include="Dao\MyBellyDao.cs" />
     <Compile Include="Dao\MyBirthPlanDao.cs" />
     <Compile Include="Dao\MyBirthPlanTypeDao.cs" />
+    <Compile Include="Dao\GuidesDao.cs" />
+    <Compile Include="Dao\MyWeightTypeDao.cs" />
+    <Compile Include="Dao\MyWeightDao.cs" />
     <Compile Include="Dao\MyWeightInStDao.cs" />
     <Compile Include="Dao\PageDao.cs" />
     <Compile Include="Dao\PhoneDao.cs" />

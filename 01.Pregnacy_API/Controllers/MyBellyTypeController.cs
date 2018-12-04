@@ -16,11 +16,11 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-    public class MyBellyController : ApiController
+    public class MyBellyTypeController : ApiController
     {
-        MyBellyDao dao = new MyBellyDao();
+        MyBellyTypeDao dao = new MyBellyTypeDao();
         // GET api/values
-        public IEnumerable<preg_my_belly> Get()
+        public IEnumerable<preg_my_belly_type> Get()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // GET api/values/5
-        public preg_my_belly Get(int id)
+        public preg_my_belly_type Get(int id)
         {
             try
             {
@@ -47,11 +47,11 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]preg_my_belly my_belly)
+        public void Post([FromBody]preg_my_belly_type my_belly_type)
         {
            try{
-				//MyBelly.password = MD5Hash(user.password);
-               dao.InsertData(my_belly);
+				//MyBellyType.password = MD5Hash(user.password);
+               dao.InsertData(my_belly_type);
             }
             catch (Exception ex)
             {
@@ -60,18 +60,15 @@ namespace _01.Pregnacy_API.Controllers
         }
       
         // PUT api/values/5
-        public void Put(int id, [FromBody]preg_my_belly myBellyUpdate)
+        public void Put(int id, [FromBody]preg_my_belly_type myBellyTypeUpdate)
         {
             //lstStrings[id] = value;
             try
             {
-                preg_my_belly phone = new preg_my_belly();
-                phone = dao.GetItemByID(id);
-                phone.image = myBellyUpdate.image;
-                phone.my_belly_type_id = myBellyUpdate.my_belly_type_id;
-                phone.month = myBellyUpdate.month;	
-                phone.user_id = myBellyUpdate.user_id;	
-                dao.UpdateData(phone);
+                preg_my_belly_type my_belly_type = new preg_my_belly_type();
+                my_belly_type = dao.GetItemByID(id);
+                my_belly_type.type = myBellyTypeUpdate.type;
+                dao.UpdateData(my_belly_type);
             }
             catch (Exception ex)
             {

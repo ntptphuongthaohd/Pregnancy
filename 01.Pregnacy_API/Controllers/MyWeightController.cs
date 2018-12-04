@@ -16,11 +16,11 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-	public class MyBirthPlanController : ApiController
+	public class MyWeightController : ApiController
 	{
-		MyBirthPlanDao dao = new MyBirthPlanDao();
+		MyWeightDao dao = new MyWeightDao();
 		// GET api/values
-		public IEnumerable<preg_my_birth_plan> Get()
+		public IEnumerable<preg_my_weight> Get()
 		{
 			try
 			{
@@ -34,7 +34,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// GET api/values/5
-		public preg_my_birth_plan Get(int id)
+		public preg_my_weight Get(int id)
 		{
 			try
 			{
@@ -47,11 +47,11 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// POST api/values
-		public void Post([FromBody]preg_my_birth_plan appointment)
+		public void Post([FromBody]preg_my_weight my_weight)
 		{
 			try
 			{
-				dao.InsertData(appointment);
+				dao.InsertData(my_weight);
 			}
 			catch (Exception ex)
 			{
@@ -60,18 +60,19 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_my_birth_plan myBirthPlanUpdate)
+		public void Put(int id, [FromBody]preg_my_weight myWeightUpdate)
 		{
 			//lstStrings[id] = value;
 			try
 			{
-				preg_my_birth_plan my_birth_plan = new preg_my_birth_plan();
-				my_birth_plan = dao.GetItemByID(id);
-				my_birth_plan.my_birth_plan_type_id = myBirthPlanUpdate.my_birth_plan_type_id;
-				my_birth_plan.user_id = myBirthPlanUpdate.user_id;
-				my_birth_plan.icon = myBirthPlanUpdate.icon;
-				my_birth_plan.title = myBirthPlanUpdate.title;
-				dao.UpdateData(my_birth_plan);
+				preg_my_weight my_weight = new preg_my_weight();
+				my_weight = dao.GetItemByID(id);
+				my_weight.user_id = myWeightUpdate.user_id;
+				my_weight.my_weight_type_id = myWeightUpdate.my_weight_type_id;
+				my_weight.start_date = myWeightUpdate.start_date;
+				my_weight.pre_pregnancy_weight = myWeightUpdate.pre_pregnancy_weight;
+				my_weight.current_weight = myWeightUpdate.current_weight;
+				dao.UpdateData(my_weight);
 			}
 			catch (Exception ex)
 			{

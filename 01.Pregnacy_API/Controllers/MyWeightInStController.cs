@@ -60,15 +60,15 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_my_weight_in_st MyWeightInStUpdate)
+		public void Put(int id, [FromBody]preg_my_weight_in_st myWeightInStUpdate)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				preg_my_weight_in_st my_weight_in_st = new preg_my_weight_in_st();
 				my_weight_in_st = dao.GetItemByID(id);
-				my_weight_in_st.position = MyWeightInStUpdate.position;
-				my_weight_in_st.value = MyWeightInStUpdate.value;
+				my_weight_in_st.position = myWeightInStUpdate.position;
+				my_weight_in_st.value = myWeightInStUpdate.value;
 				dao.UpdateData(my_weight_in_st);
 			}
 			catch (Exception ex)

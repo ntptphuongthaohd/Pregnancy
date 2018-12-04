@@ -52,16 +52,16 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_help HelpUpdate)
+		public void Put(int id, [FromBody]preg_help helpUpdate)
 		{
 
 			try
 			{
 				preg_help Help = new preg_help();
 				Help = dao.GetItemByID(id);
-				Help.help_category_id = HelpUpdate.help_category_id;
-				Help.hingline_image = HelpUpdate.hingline_image;
-				Help.description = HelpUpdate.description;
+				Help.help_category_id = helpUpdate.help_category_id;
+				Help.hingline_image = helpUpdate.hingline_image;
+				Help.description = helpUpdate.description;
 
 				dao.UpdateData(Help);
 			}
