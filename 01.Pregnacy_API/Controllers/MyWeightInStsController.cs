@@ -20,74 +20,111 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		MyWeightInStDao dao = new MyWeightInStDao();
 		// GET api/values
-		public IEnumerable<preg_my_weight_in_st> Get()
+		public HttpResponseMessage Get()
 		{
 			try
 			{
-				return dao.GetListItem();
+				IEnumerable<preg_my_weight_in_st> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
-
 		}
 
 		// GET api/values/5
-		public preg_my_weight_in_st Get(int id)
+		public HttpResponseMessage Get(int id)
 		{
 			try
 			{
-				return dao.GetItemByID(id);
+				preg_my_weight_in_st data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// POST api/values
-		public void Post([FromBody]preg_my_weight_in_st appointment)
+		public HttpResponseMessage Post([FromBody]preg_my_weight_in_st data)
 		{
 			try
 			{
-				dao.InsertData(appointment);
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_my_weight_in_st myWeightInStUpdate)
+		public HttpResponseMessage Put(int id, [FromBody]preg_my_weight_in_st dataUpdate)
 		{
 			//lstStrings[id] = value;
 			try
 			{
-				preg_my_weight_in_st my_weight_in_st = new preg_my_weight_in_st();
-				my_weight_in_st = dao.GetItemByID(id);
-				my_weight_in_st.position = myWeightInStUpdate.position;
-				my_weight_in_st.value = myWeightInStUpdate.value;
-				dao.UpdateData(my_weight_in_st);
+				if (dataUpdate != null)
+				{
+					preg_my_weight_in_st my_weight_in_st = new preg_my_weight_in_st();
+					my_weight_in_st = dao.GetItemByID(id);
+					my_weight_in_st.position = dataUpdate.position;
+					my_weight_in_st.value = dataUpdate.value;
+					dao.UpdateData(my_weight_in_st);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
 			}
 		}
 
 		// DELETE api/values/5
-		public void Delete(int id)
+		public HttpResponseMessage Delete(int id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
 			}
 		}
 	}

@@ -16,95 +16,133 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-    public class AppointmentsController : ApiController
-    {
-        AppointmentDao dao = new AppointmentDao();
-        // GET api/values
+	public class AppointmentsController : ApiController
+	{
+		AppointmentDao dao = new AppointmentDao();
+		// GET api/values
 		[HttpGet]
-        public IEnumerable<preg_appointment> Get()
-        {
-            try
-            {
-                return dao.GetListItem();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-           
-        }
+		public HttpResponseMessage Get()
+		{
+			try
+			{
+				IEnumerable<preg_appointment> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
 
-        // GET api/values/5
+		}
+
+		// GET api/values/5
 		[HttpGet]
-        public preg_appointment Get(int id)
-        {
-            try
-            {
-                return dao.GetItemByID(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public HttpResponseMessage Get(int id)
+		{
+			try
+			{
+				preg_appointment data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
+		}
 
-        // POST api/values
+		// POST api/values
 		[HttpPost]
-        public void Post([FromBody]preg_appointment appointment)
-        {
-           try{
-				//Appointment.password = MD5Hash(user.password);
-               dao.InsertData(appointment);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-      
-        // PUT api/values/5
-		[HttpPut]
-        public void Put(int id, [FromBody]preg_appointment AppointmentUpdate)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                preg_appointment appointment = new preg_appointment();
-                appointment = dao.GetItemByID(id);
-                appointment.name = AppointmentUpdate.name;
-                appointment.profession_id = AppointmentUpdate.profession_id;
-                appointment.appointment_type_id = AppointmentUpdate.appointment_type_id;	
-                appointment.appointment_date = AppointmentUpdate.appointment_date;	
-                appointment.appointment_time = AppointmentUpdate.appointment_time;	
-                appointment.my_weight_type_id = AppointmentUpdate.my_weight_type_id;	
-                appointment.weight_in_st = AppointmentUpdate.weight_in_st;	
-                appointment.appointment_bp_dia_id = AppointmentUpdate.appointment_bp_dia_id;	
-                appointment.appointment_bp_sys_id = AppointmentUpdate.appointment_bp_sys_id;	
-                appointment.appointment_baby_heart_id = AppointmentUpdate.appointment_baby_heart_id;	
-                appointment.sync_to_heart = AppointmentUpdate.sync_to_heart;	
-                appointment.note = AppointmentUpdate.note;	
-                appointment.user_id = AppointmentUpdate.user_id;	
-                dao.UpdateData(appointment);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public HttpResponseMessage Post([FromBody]preg_appointment data)
+		{
+			try
+			{
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+			}
+		}
 
-        // DELETE api/values/5
+		// PUT api/values/5
+		[HttpPut]
+		public HttpResponseMessage Put(int id, [FromBody]preg_appointment dataUpdate)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				if (dataUpdate != null)
+				{
+					preg_appointment appointment = new preg_appointment();
+					appointment = dao.GetItemByID(id);
+					appointment.name = dataUpdate.name;
+					appointment.profession_id = dataUpdate.profession_id;
+					appointment.appointment_type_id = dataUpdate.appointment_type_id;
+					appointment.appointment_date = dataUpdate.appointment_date;
+					appointment.appointment_time = dataUpdate.appointment_time;
+					appointment.my_weight_type_id = dataUpdate.my_weight_type_id;
+					appointment.weight_in_st = dataUpdate.weight_in_st;
+					appointment.appointment_bp_dia_id = dataUpdate.appointment_bp_dia_id;
+					appointment.appointment_bp_sys_id = dataUpdate.appointment_bp_sys_id;
+					appointment.appointment_baby_heart_id = dataUpdate.appointment_baby_heart_id;
+					appointment.sync_to_heart = dataUpdate.sync_to_heart;
+					appointment.note = dataUpdate.note;
+					appointment.user_id = dataUpdate.user_id;
+					dao.UpdateData(appointment);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
+			}
+		}
+
+		// DELETE api/values/5
 		[HttpDelete]
-        public void Delete(int id)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                dao.DeleteData(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-    }
+		public HttpResponseMessage Delete(int id)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
+			}
+		}
+	}
 }

@@ -16,81 +16,118 @@ using PregnancyData.Dao;
 namespace _01.Pregnacy_API.Controllers
 {
 
-    public class MyBelliesController : ApiController
-    {
-        MyBellyDao dao = new MyBellyDao();
-        // GET api/values
-        public IEnumerable<preg_my_belly> Get()
-        {
-            try
-            {
-                return dao.GetListItem();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-           
-        }
+	public class MyBelliesController : ApiController
+	{
+		MyBellyDao dao = new MyBellyDao();
+		// GET api/values
+		public HttpResponseMessage Get()
+		{
+			try
+			{
+				IEnumerable<preg_my_belly> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
+		}
 
-        // GET api/values/5
-        public preg_my_belly Get(int id)
-        {
-            try
-            {
-                return dao.GetItemByID(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		// GET api/values/5
+		public HttpResponseMessage Get(int id)
+		{
+			try
+			{
+				preg_my_belly data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
+		}
 
-        // POST api/values
-        public void Post([FromBody]preg_my_belly my_belly)
-        {
-           try{
-				//MyBelly.password = MD5Hash(user.password);
-               dao.InsertData(my_belly);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-      
-        // PUT api/values/5
-        public void Put(int id, [FromBody]preg_my_belly myBellyUpdate)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                preg_my_belly phone = new preg_my_belly();
-                phone = dao.GetItemByID(id);
-                phone.image = myBellyUpdate.image;
-                phone.my_belly_type_id = myBellyUpdate.my_belly_type_id;
-                phone.month = myBellyUpdate.month;	
-                phone.user_id = myBellyUpdate.user_id;	
-                dao.UpdateData(phone);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		// POST api/values
+		public HttpResponseMessage Post([FromBody]preg_my_belly data)
+		{
+			try
+			{
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+			}
+		}
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                dao.DeleteData(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-    }
+		// PUT api/values/5
+		public HttpResponseMessage Put(int id, [FromBody]preg_my_belly dataUpdate)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				if (dataUpdate != null)
+				{
+					preg_my_belly phone = new preg_my_belly();
+					phone = dao.GetItemByID(id);
+					phone.image = dataUpdate.image;
+					phone.my_belly_type_id = dataUpdate.my_belly_type_id;
+					phone.month = dataUpdate.month;
+					phone.user_id = dataUpdate.user_id;
+					dao.UpdateData(phone);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
+			}
+		}
+
+		// DELETE api/values/5
+		public HttpResponseMessage Delete(int id)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
+			}
+		}
+	}
 }

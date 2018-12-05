@@ -13,73 +13,111 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		ProfessionDao dao = new ProfessionDao();
 		// GET api/values
-		public IEnumerable<preg_profession> Get()
+		public HttpResponseMessage Get()
 		{
 			try
 			{
-				return dao.GetListItem();
+				IEnumerable<preg_profession> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// GET api/values/5
-		public preg_profession Get(int id)
+		public HttpResponseMessage Get(int id)
 		{
 			try
 			{
-				return dao.GetItemByID(id);
+				preg_profession data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// POST api/values
-		public void Post([FromBody]preg_profession profession)
+		public HttpResponseMessage Post([FromBody]preg_profession data)
 		{
 			try
 			{
-				dao.InsertData(profession);
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_profession ProfessionUpdate)
+		public HttpResponseMessage Put(int id, [FromBody]preg_profession dataUpdate)
 		{
 
 			try
 			{
-				preg_profession Profession = new preg_profession();
-				Profession = dao.GetItemByID(id);
-				Profession.profession_type = ProfessionUpdate.profession_type;
+				if (dataUpdate != null)
+				{
+					preg_profession Profession = new preg_profession();
+					Profession = dao.GetItemByID(id);
+					Profession.profession_type = dataUpdate.profession_type;
 
-				dao.UpdateData(Profession);
+					dao.UpdateData(Profession);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
 			}
 		}
 
 		// DELETE api/values/5
-		public void Delete(int id)
+		public HttpResponseMessage Delete(int id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
 			}
 		}
 	}
