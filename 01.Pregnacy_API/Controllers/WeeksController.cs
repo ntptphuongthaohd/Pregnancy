@@ -19,48 +19,70 @@ namespace _01.Pregnacy_API.Controllers
 	public class WeeksController : ApiController
 	{
 		WeekDao dao = new WeekDao();
-		// GET api/values
-		public IEnumerable<preg_week> Get()
+		#region New Process
+		[HttpGet]
+		public HttpResponseMessage Get()
 		{
 			try
 			{
-				return dao.GetListItem();
+				IEnumerable<preg_week> weeks = dao.GetListItem();
+				if (weeks.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, weeks);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
-
 		}
-
-		// GET api/values/5
-		public preg_week Get(int id)
+		public HttpResponseMessage Get(int id)
 		{
 			try
 			{
-				return dao.GetItemByID(id);
+				preg_week weeks = dao.GetItemByID(id);
+				if (weeks != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, weeks);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
+		#endregion
+
 
 		// POST api/values
-		public void Post([FromBody]preg_week week)
+		public HttpResponseMessage Post([FromBody]preg_week week)
 		{
 			try
 			{
 				dao.InsertData(week);
+				return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_week weekUpdate)
+		public HttpResponseMessage Put(int id, [FromBody]preg_week weekUpdate)
 		{
 			//lstStrings[id] = value;
 			try
@@ -74,24 +96,26 @@ namespace _01.Pregnacy_API.Controllers
 				week.description = weekUpdate.description;
 				week.daily_relation = weekUpdate.daily_relation;
 				dao.UpdateData(week);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
 			}
 		}
 
 		// DELETE api/values/5
-		public void Delete(int id)
+		public HttpResponseMessage Delete(int id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
 			}
 		}
 	}

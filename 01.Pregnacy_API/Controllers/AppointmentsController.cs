@@ -20,6 +20,7 @@ namespace _01.Pregnacy_API.Controllers
     {
         AppointmentDao dao = new AppointmentDao();
         // GET api/values
+		[HttpGet]
         public IEnumerable<preg_appointment> Get()
         {
             try
@@ -34,6 +35,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // GET api/values/5
+		[HttpGet]
         public preg_appointment Get(int id)
         {
             try
@@ -47,6 +49,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // POST api/values
+		[HttpPost]
         public void Post([FromBody]preg_appointment appointment)
         {
            try{
@@ -60,6 +63,7 @@ namespace _01.Pregnacy_API.Controllers
         }
       
         // PUT api/values/5
+		[HttpPut]
         public void Put(int id, [FromBody]preg_appointment AppointmentUpdate)
         {
             //lstStrings[id] = value;
@@ -89,6 +93,7 @@ namespace _01.Pregnacy_API.Controllers
         }
 
         // DELETE api/values/5
+		[HttpDelete]
         public void Delete(int id)
         {
             //lstStrings[id] = value;
