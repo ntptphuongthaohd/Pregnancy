@@ -8,6 +8,7 @@ using System.Web;
 public class SysConst
 {
 	public static string DATA_NOT_FOUND = "Data not found.";
+	public static string DATA_EMPTY = "Error: Data empty.";
 	public static string DATA_INSERT_SUCCESS = "Data insert succeed.";
 	public static string DATA_INSERT_FAIL = "Data insert failed.";
 	public static string DATA_UPDATE_SUCCESS = "Data update succeed.";

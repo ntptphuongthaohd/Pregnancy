@@ -20,76 +20,114 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		WeeklyNoteDao dao = new WeeklyNoteDao();
 		// GET api/values
-		public IEnumerable<preg_weekly_note> Get()
+		public HttpResponseMessage Get()
 		{
 			try
 			{
-				return dao.GetListItem();
+				IEnumerable<preg_weekly_note> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
-
 		}
 
 		// GET api/values/5
-		public preg_weekly_note Get(int id)
+		public HttpResponseMessage Get(int id)
 		{
 			try
 			{
-				return dao.GetItemByID(id);
+				preg_weekly_note data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// POST api/values
-		public void Post([FromBody]preg_weekly_note weekly_note)
+		public HttpResponseMessage Post([FromBody]preg_weekly_note data)
 		{
 			try
 			{
-				dao.InsertData(weekly_note);
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_weekly_note weeklyNoteUpdate)
+		public HttpResponseMessage Put(int id, [FromBody]preg_weekly_note dataUpdate)
 		{
 			//lstStrings[id] = value;
 			try
 			{
-				preg_weekly_note weekly_note = new preg_weekly_note();
-				weekly_note = dao.GetItemByID(id);
-				weekly_note.week_id = weeklyNoteUpdate.week_id;
-				weekly_note.user_id = weeklyNoteUpdate.user_id;
-				weekly_note.photo = weeklyNoteUpdate.photo;
-				weekly_note.note = weeklyNoteUpdate.note;
-				dao.UpdateData(weekly_note);
+				if (dataUpdate != null)
+				{
+
+					preg_weekly_note weekly_note = new preg_weekly_note();
+					weekly_note = dao.GetItemByID(id);
+					weekly_note.week_id = dataUpdate.week_id;
+					weekly_note.user_id = dataUpdate.user_id;
+					weekly_note.photo = dataUpdate.photo;
+					weekly_note.note = dataUpdate.note;
+					dao.UpdateData(weekly_note);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
 			}
 		}
 
 		// DELETE api/values/5
-		public void Delete(int id)
+		public HttpResponseMessage Delete(int id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
 			}
 		}
 	}

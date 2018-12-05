@@ -13,75 +13,112 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		TodoOtherDao dao = new TodoOtherDao();
 		// GET api/values
-		public IEnumerable<preg_todo_other> Get()
+		public HttpResponseMessage Get()
 		{
 			try
 			{
-				return dao.GetListItem();
+				IEnumerable<preg_todo_other> data = dao.GetListItem();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// GET api/values/5
-		public preg_todo_other Get(int id)
+		public HttpResponseMessage Get(int id)
 		{
 			try
 			{
-				return dao.GetItemByID(id);
+				preg_todo_other data = dao.GetItemByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
 			}
 		}
 
 		// POST api/values
-		public void Post([FromBody]preg_todo_other todo_other)
+		public HttpResponseMessage Post([FromBody]preg_todo_other data)
 		{
 			try
 			{
-				dao.InsertData(todo_other);
+				if (data != null)
+				{
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public void Put(int id, [FromBody]preg_todo_other TodoOtherUpdate)
+		public HttpResponseMessage Put(int id, [FromBody]preg_todo_other dataUpdate)
 		{
-
 			try
 			{
-				preg_todo_other TodoOther = new preg_todo_other();
-				TodoOther = dao.GetItemByID(id);
-				TodoOther.title = TodoOtherUpdate.title;
-				TodoOther.content = TodoOtherUpdate.content;
-				TodoOther.user_id = TodoOtherUpdate.user_id;
+				if (dataUpdate != null)
+				{
+					preg_todo_other TodoOther = new preg_todo_other();
+					TodoOther = dao.GetItemByID(id);
+					TodoOther.title = dataUpdate.title;
+					TodoOther.content = dataUpdate.content;
+					TodoOther.user_id = dataUpdate.user_id;
 
-				dao.UpdateData(TodoOther);
+					dao.UpdateData(TodoOther);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
 			}
 		}
 
 		// DELETE api/values/5
-		public void Delete(int id)
+		public HttpResponseMessage Delete(int id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
 			}
 		}
 	}

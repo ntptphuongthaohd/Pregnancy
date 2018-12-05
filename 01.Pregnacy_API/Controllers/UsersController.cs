@@ -15,99 +15,138 @@ using PregnancyData.Dao;
 
 namespace _01.Pregnacy_API.Controllers
 {
+	public class UsersController : ApiController
+	{
+		UserDao dao = new UserDao();
+		// GET api/values
+		public HttpResponseMessage Get()
+		{
 
-    public class UsersController : ApiController
-    {
-        UserDao dao = new UserDao();
-        // GET api/values
-        public IEnumerable<preg_user> Get()
-        {
-            try
-            {
-                return dao.GetListUser();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-           
-        }
+			try
+			{
+				IEnumerable<preg_user> data = dao.GetListUser();
+				if (data.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
 
-        // GET api/values/5
-        public preg_user Get(int id)
-        {
-            try
-            {
-                return dao.GetUserByID(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		}
 
-        // POST api/values
-        public void Post([FromBody]preg_user user)
-        {
-           try{
-               user.password = MD5Hash(user.password);
-               dao.InsertData(user);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public static string MD5Hash(string input)
-        {
-            StringBuilder hash = new StringBuilder();
-            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+		// GET api/values/5
+		public HttpResponseMessage Get(int id)
+		{
+			try
+			{
+				preg_user data = dao.GetUserByID(id);
+				if (data != null)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, data);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+			}
+		}
 
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                hash.Append(bytes[i].ToString("x2"));
-            }
-            return hash.ToString();
-        }
+		// POST api/values
+		public HttpResponseMessage Post([FromBody]preg_user data)
+		{
+			try
+			{
+				if (data != null)
+				{
+					data.password = MD5Hash(data.password);
+					dao.InsertData(data);
+					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
+				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+			}
+		}
+		public static string MD5Hash(string input)
+		{
+			StringBuilder hash = new StringBuilder();
+			MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+			byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]preg_user userUpdate)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                preg_user user = new preg_user();
-                user = dao.GetUserByID(id);
-                user.avarta = userUpdate.avarta;
-                user.password = MD5Hash(userUpdate.password);
-                user.phone = userUpdate.phone;
-                user.social_type = userUpdate.social_type;
-                user.first_name = userUpdate.first_name;
-                user.last_name = userUpdate.last_name;
-                user.you_are_the = userUpdate.you_are_the;
-                user.location = userUpdate.location;
-                user.status = userUpdate.status;
-                dao.UpdateData(user);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+			for (int i = 0; i < bytes.Length; i++)
+			{
+				hash.Append(bytes[i].ToString("x2"));
+			}
+			return hash.ToString();
+		}
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-            //lstStrings[id] = value;
-            try
-            {
-                dao.DeleteData(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-    }
+		// PUT api/values/5
+		public HttpResponseMessage Put(int id, [FromBody]preg_user dataUpdate)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				if (dataUpdate != null)
+				{
+					preg_user user = new preg_user();
+					user = dao.GetUserByID(id);
+					user.avarta = dataUpdate.avarta;
+					user.password = MD5Hash(dataUpdate.password);
+					user.phone = dataUpdate.phone;
+					user.social_type = dataUpdate.social_type;
+					user.first_name = dataUpdate.first_name;
+					user.last_name = dataUpdate.last_name;
+					user.you_are_the = dataUpdate.you_are_the;
+					user.location = dataUpdate.location;
+					user.status = dataUpdate.status;
+					dao.UpdateData(user);
+					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
+				}
+				else
+				{
+					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+				}
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
+			}
+		}
+
+		// DELETE api/values/5
+		public HttpResponseMessage Delete(int id)
+		{
+			//lstStrings[id] = value;
+			try
+			{
+				dao.DeleteData(id);
+				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
+			}
+			catch (Exception ex)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
+			}
+		}
+	}
 }

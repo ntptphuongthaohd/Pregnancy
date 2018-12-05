@@ -187,7 +187,6 @@
     <Compile Include="Controllers\TodoOthersController.cs" />
     <Compile Include="Controllers\UpgradesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WeeklyNotesController.cs" />
     <Compile Include="Controllers\WeeksController.cs" />
     <Compile Include="Entity\Pregnancy.cs" />
