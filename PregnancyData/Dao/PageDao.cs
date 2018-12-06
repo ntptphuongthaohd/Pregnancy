@@ -23,8 +23,29 @@ namespace PregnancyData.Dao
         {
             return connect.preg_pages.Where(c => c.id == id).FirstOrDefault();
         }
-
-        public void InsertData(preg_page item)
+		public IEnumerable<preg_page> GetItemsByParams(preg_page data)
+		{
+			IEnumerable<preg_page> result = connect.preg_pages;
+			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
+			{
+				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
+				var propertyValue = data.GetType().GetProperty(propertyName).GetValue(data, null);
+				if (propertyName == "id" && Convert.ToInt32(propertyValue) != 0)
+				{
+					result = result.Where(c => c.id == Convert.ToInt32(propertyValue));
+				}
+				else if (propertyName == "title" && propertyValue != null)
+				{
+					result = result.Where(c => c.title == Convert.ToInt32(propertyValue));
+				}
+				else if (propertyName == "content" && propertyValue != null)
+				{
+					result = result.Where(c => c.content == propertyValue.ToString());
+				}
+			}
+			return result;
+		}
+		public void InsertData(preg_page item)
         {
             connect.preg_pages.Add(item);
             connect.SaveChanges();

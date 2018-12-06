@@ -23,8 +23,33 @@ namespace PregnancyData.Dao
         {
             return connect.preg_images.Where(c => c.id == id).FirstOrDefault();
         }
-
-        public void InsertData(preg_image item)
+		public IEnumerable<preg_image> GetItemsByParams(preg_image data)
+		{
+			IEnumerable<preg_image> result = connect.preg_images;
+			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
+			{
+				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
+				var propertyValue = data.GetType().GetProperty(propertyName).GetValue(data, null);
+				if (propertyName == "id" && Convert.ToInt32(propertyValue) != 0)
+				{
+					result = result.Where(c => c.id == Convert.ToInt32(propertyValue));
+				}
+				else if (propertyName == "image_type_id" && propertyValue != null)
+				{
+					result = result.Where(c => c.image_type_id == Convert.ToInt32(propertyValue));
+				}
+				else if (propertyName == "image" && propertyValue != null)
+				{
+					result = result.Where(c => c.image == propertyValue.ToString());
+				}
+				else if (propertyName == "week_id" && propertyValue != null)
+				{
+					result = result.Where(c => c.week_id == Convert.ToInt32(propertyValue));
+				}
+			}
+			return result;
+		}
+		public void InsertData(preg_image item)
         {
             connect.preg_images.Add(item);
             connect.SaveChanges();

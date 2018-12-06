@@ -23,8 +23,58 @@ namespace PregnancyData.Dao
         {
             return connect.preg_users.Where(c => c.id == id).FirstOrDefault();
         }
+		public IEnumerable<preg_user> GetUsersByParams(preg_user data)
+		{
+			IEnumerable<preg_user> result = connect.preg_users;
+			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
+			{
+				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
+				var propertyValue = data.GetType().GetProperty(propertyName).GetValue(data, null);
+				if (propertyName == "id" && Convert.ToInt32(propertyValue) != 0)
+				{
+					result = result.Where(c => c.id == Convert.ToInt32(propertyValue));
+				}
+				else if (propertyName == "password" && propertyValue != null)
+				{
+					result = result.Where(c => c.password == propertyValue.ToString());
+				}
+				else if (propertyName == "phone" && propertyValue != null)
+				{
+					result = result.Where(c => c.phone == propertyValue.ToString());
+				}
+				else if (propertyName == "social_type" && propertyValue != null)
+				{
+					result = result.Where(c => c.social_type == propertyValue.ToString());
+				}
+				else if (propertyName == "first_name" && propertyValue != null)
+				{
+					result = result.Where(c => c.first_name == propertyValue.ToString());
+				}
+				else if (propertyName == "last_name" && propertyValue != null)
+				{
+					result = result.Where(c => c.last_name == propertyValue.ToString());
+				}
+				else if (propertyName == "you_are_the" && propertyValue != null)
+				{
+					result = result.Where(c => c.you_are_the == propertyValue.ToString());
+				}
+				else if (propertyName == "location" && propertyValue != null)
+				{
+					result = result.Where(c => c.location == propertyValue.ToString());
+				}
+				else if (propertyName == "status" && propertyValue != null)
+				{
+					result = result.Where(c => c.status == propertyValue.ToString());
+				}
+				else if (propertyName == "avarta" && propertyValue != null)
+				{
+					result = result.Where(c => c.avarta == propertyValue.ToString());
+				}
+			}
+			return result;
+		}
 
-        public void InsertData(preg_user item)
+		public void InsertData(preg_user item)
         {
             connect.preg_users.Add(item);
             connect.SaveChanges();

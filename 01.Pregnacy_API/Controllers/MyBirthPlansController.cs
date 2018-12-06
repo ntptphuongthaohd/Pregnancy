@@ -20,19 +20,35 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		MyBirthPlanDao dao = new MyBirthPlanDao();
 		// GET api/values
-		public HttpResponseMessage Get()
+		public HttpResponseMessage Get([FromBody]preg_my_birth_plan data)
 		{
 			try
 			{
-				IEnumerable<preg_my_birth_plan> data = dao.GetListItem();
-				if (data.Count() > 0)
+				if (data != null)
 				{
-					return Request.CreateResponse(HttpStatusCode.OK, data);
+					IEnumerable<preg_my_birth_plan> result = dao.GetItemsByParams(data);
+					if (result.Count() > 0)
+					{
+						return Request.CreateResponse(HttpStatusCode.OK, result);
+					}
+					else
+					{
+						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					}
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-					return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					IEnumerable<preg_my_birth_plan> result = dao.GetListItem();
+					if (result.Count() > 0)
+					{
+						return Request.CreateResponse(HttpStatusCode.OK, result);
+					}
+					else
+					{
+						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					}
 				}
 			}
 			catch (Exception ex)

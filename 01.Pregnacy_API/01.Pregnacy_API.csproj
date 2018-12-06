@@ -153,7 +153,7 @@
     <Compile Include="Controllers\AppointmentTypesController.cs" />
     <Compile Include="Controllers\AuthsController.cs" />
     <Compile Include="Controllers\BabyNamesController.cs" />
-    <Compile Include="Controllers\BirthPlanTypesController.cs" />
+    <Compile Include="Controllers\MyBirthPlanTypesController.cs" />
     <Compile Include="Controllers\ContactUssController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\DailyLikesController.cs" />
@@ -179,7 +179,7 @@
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\GuidesController.cs" />
     <Compile Include="Controllers\PhonesController.cs" />
-    <Compile Include="Controllers\PregnanciesController.cs" />
+    <Compile Include="Controllers\PregnancysController.cs" />
     <Compile Include="Controllers\ProfessionsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />

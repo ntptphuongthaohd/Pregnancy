@@ -20,19 +20,35 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		WeekDao dao = new WeekDao();
 		[HttpGet]
-		public HttpResponseMessage Get()
+		public HttpResponseMessage Get([FromBody]preg_week data)
 		{
 			try
 			{
-				IEnumerable<preg_week> data = dao.GetListItem();
-				if (data.Count() > 0)
+				if (data != null)
 				{
-					return Request.CreateResponse(HttpStatusCode.OK, data);
+					IEnumerable<preg_week> result = dao.GetItemsByParams(data);
+					if (result.Count() > 0)
+					{
+						return Request.CreateResponse(HttpStatusCode.OK, result);
+					}
+					else
+					{
+						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					}
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-					return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					IEnumerable<preg_week> result = dao.GetListItem();
+					if (result.Count() > 0)
+					{
+						return Request.CreateResponse(HttpStatusCode.OK, result);
+					}
+					else
+					{
+						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+					}
 				}
 			}
 			catch (Exception ex)
@@ -63,7 +79,6 @@ namespace _01.Pregnacy_API.Controllers
 				return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
 			}
 		}
-
 
 		// POST api/values
 		[HttpPost]
