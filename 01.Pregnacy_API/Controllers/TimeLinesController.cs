@@ -32,23 +32,23 @@ namespace _01.Pregnacy_API.Controllers
 				else
 				{
 					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+					return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
 				}
 			}
 			catch (Exception ex)
 			{
-				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				HttpError err = new HttpError(ex.Message);
+				return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
 			}
 
 		}
 
 		// GET api/values/5
-		public HttpResponseMessage Get(int id)
+		public HttpResponseMessage Get(string id)
 		{
 			try
 			{
-				preg_time_line data = dao.GetItemByID(id);
+				preg_time_line data = dao.GetItemByID(Convert.ToInt32(id));
 				if (data != null)
 				{
 					return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -56,13 +56,13 @@ namespace _01.Pregnacy_API.Controllers
 				else
 				{
 					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-					return Request.CreateResponse(HttpStatusCode.NoContent, err);
+					return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
 				}
 			}
 			catch (Exception ex)
 			{
-				HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-				return Request.CreateResponse(HttpStatusCode.NoContent, err);
+				HttpError err = new HttpError(ex.Message);
+				return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
 			}
 		}
 
@@ -78,18 +78,19 @@ namespace _01.Pregnacy_API.Controllers
 				}
 				else
 				{
-					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
 			catch (Exception ex)
 			{
-				HttpError err = new HttpError(SysConst.DATA_INSERT_FAIL);
-				return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+				HttpError err = new HttpError(ex.Message);
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// PUT api/values/5
-		public HttpResponseMessage Put(int id, [FromBody]preg_time_line dataUpdate)
+		public HttpResponseMessage Put(string id, [FromBody]preg_time_line dataUpdate)
 		{
 			//lstStrings[id] = value;
 			try
@@ -97,7 +98,7 @@ namespace _01.Pregnacy_API.Controllers
 				if (dataUpdate != null)
 				{
 					preg_time_line time_line = new preg_time_line();
-					time_line = dao.GetItemByID(id);
+					time_line = dao.GetItemByID(Convert.ToInt32(id));
 					time_line.week_id = dataUpdate.week_id;
 					time_line.title = dataUpdate.title;
 					time_line.image = dataUpdate.image;
@@ -109,27 +110,30 @@ namespace _01.Pregnacy_API.Controllers
 				}
 				else
 				{
-					return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
 			catch (Exception ex)
 			{
-				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_UPDATE_FAIL);
+				HttpError err = new HttpError(ex.Message);
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
 		// DELETE api/values/5
-		public HttpResponseMessage Delete(int id)
+		public HttpResponseMessage Delete(string id)
 		{
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(id);
+				dao.DeleteData(Convert.ToInt32(id));
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
 			{
-				return Request.CreateResponse(HttpStatusCode.BadRequest, SysConst.DATA_DELETE_FAIL);
+				HttpError err = new HttpError(ex.Message);
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 	}
