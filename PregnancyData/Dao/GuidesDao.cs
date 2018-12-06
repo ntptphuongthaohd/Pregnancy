@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public GuidesDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_guides> GetListItem()

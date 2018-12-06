@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public AppointmentBpDiaDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_appointment_bp_dia> GetListItem()

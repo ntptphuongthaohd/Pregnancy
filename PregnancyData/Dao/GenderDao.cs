@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public GenderDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_gender> GetListItem()

@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public ImageTypeDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_image_type> GetListItem()

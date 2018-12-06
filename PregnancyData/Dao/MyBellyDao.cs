@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public MyBellyDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_my_belly> GetListItem()

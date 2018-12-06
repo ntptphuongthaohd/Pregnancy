@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public MyWeightTypeDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_my_weight_type> GetListItem()

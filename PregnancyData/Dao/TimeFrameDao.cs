@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public TimeFrameDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_time_frame> GetListItem()

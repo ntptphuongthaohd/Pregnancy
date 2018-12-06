@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public TimeLineDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_time_line> GetListItem()

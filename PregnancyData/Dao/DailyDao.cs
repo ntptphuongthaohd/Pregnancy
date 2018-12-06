@@ -12,7 +12,8 @@ namespace PregnancyData.Dao
          public DailyDao()
         {
             connect = new PregnancyEntity();
-        }
+			connect.Configuration.ProxyCreationEnabled = false;
+		}
 
         public IEnumerable<preg_daily> GetListItem()
         {

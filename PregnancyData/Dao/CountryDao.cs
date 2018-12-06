@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public CountryDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_country> GetListItem()

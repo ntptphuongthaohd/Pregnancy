@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public ContactUsDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_cotact_us> GetListItem()

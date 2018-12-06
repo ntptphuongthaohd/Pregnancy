@@ -12,7 +12,8 @@ namespace PregnancyData.Dao
          public HelpDao()
         {
             connect = new PregnancyEntity();
-        }
+			connect.Configuration.ProxyCreationEnabled = false;
+		}
 
         public IEnumerable<preg_help> GetListItem()
         {

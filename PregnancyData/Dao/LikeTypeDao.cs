@@ -12,6 +12,7 @@ namespace PregnancyData.Dao
 		public LikeTypeDao()
 		{
 			connect = new PregnancyEntity();
+			connect.Configuration.ProxyCreationEnabled = false;
 		}
 
 		public IEnumerable<preg_like_type> GetListItem()

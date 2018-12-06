@@ -12,7 +12,8 @@ namespace PregnancyData.Dao
          public SizeGuideDao()
         {
             connect = new PregnancyEntity();
-        }
+			connect.Configuration.ProxyCreationEnabled = false;
+		}
 
         public IEnumerable<preg_size_guide> GetListItem()
         {
