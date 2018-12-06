@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace _01.Pregnacy_API.Controllers
 {
-	public class PregnancysControllers : ApiController
+	public class PregnancysController : ApiController
 	{
 		PregnancyDao dao = new PregnancyDao();
 		// GET api/values
