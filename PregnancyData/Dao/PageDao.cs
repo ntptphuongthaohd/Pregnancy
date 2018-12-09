@@ -13,7 +13,7 @@ namespace PregnancyData.Dao
         {
             connect = new PregnancyEntity();
 			connect.Configuration.ProxyCreationEnabled = false;
-        }
+		}
 
         public IEnumerable<preg_page> GetListItem()
         {
@@ -63,6 +63,34 @@ namespace PregnancyData.Dao
             connect.preg_pages.Remove(item);
             connect.SaveChanges();
         }
+		public string resultReturn(preg_page data)
+		{
+			string result = "{";
 
-    }
+			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
+			{
+				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
+				var propertyValue = data.GetType().GetProperty(propertyName).GetValue(data, null);
+				if (propertyName == "preg_guides")
+				{
+					result += @"""" + propertyName + @""":[";
+					GuidesDao guidesdao = new GuidesDao();
+					preg_guides item = new preg_guides();
+					item.page_id = data.id;
+					IEnumerable<preg_guides> return_preg_guides = guidesdao.GetItemsByParams(item);
+					foreach (var item2 in return_preg_guides)
+					{
+						result+=guidesdao.resultReturn(item2);
+					}
+					result+="],";
+				}
+				else
+				{
+					result += @"""" + propertyName + @""":""" + propertyValue.ToString() + @""",";
+				}
+			}
+			result += "}";
+			return result;
+		}
+	}
 }

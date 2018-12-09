@@ -21,6 +21,7 @@ namespace _01.Pregnacy_API.Controllers
 		AppointmentDao dao = new AppointmentDao();
 		// GET api/values
 		[HttpGet]
+		[Authorize]
 		public HttpResponseMessage Get([FromBody]preg_appointment data)
 		{
 			try
@@ -61,6 +62,7 @@ namespace _01.Pregnacy_API.Controllers
 
 		// GET api/values/5
 		[HttpGet]
+		[Authorize]
 		public HttpResponseMessage Get(string id)
 		{
 			try
@@ -85,6 +87,7 @@ namespace _01.Pregnacy_API.Controllers
 
 		// POST api/values
 		[HttpPost]
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Post([FromBody]preg_appointment data)
 		{
 			try
@@ -109,6 +112,7 @@ namespace _01.Pregnacy_API.Controllers
 
 		// PUT api/values/5
 		[HttpPut]
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Put(string id, [FromBody]preg_appointment dataUpdate)
 		{
 			//lstStrings[id] = value;
@@ -149,6 +153,7 @@ namespace _01.Pregnacy_API.Controllers
 
 		// DELETE api/values/5
 		[HttpDelete]
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Delete(string id)
 		{
 			//lstStrings[id] = value;

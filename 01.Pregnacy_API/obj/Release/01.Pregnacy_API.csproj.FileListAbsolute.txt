@@ -191,3 +191,15 @@ E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\01.Pregnacy_API\bin\Antlr3.Ru
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\01.Pregnacy_API\obj\Release\01.Pregnacy_API.csprojResolveAssemblyReference.cache
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\01.Pregnacy_API\obj\Release\01.Pregnacy_API.dll
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\01.Pregnacy_API\obj\Release\01.Pregnacy_API.pdb
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Cors.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Security.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Security.OAuth.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Owin.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\System.Web.Cors.dll
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.xml
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Cors.xml
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Security.xml
+D:\WSoftPro\Git\Pregnancy\01.Pregnacy_API\bin\Microsoft.Owin.Security.OAuth.xml

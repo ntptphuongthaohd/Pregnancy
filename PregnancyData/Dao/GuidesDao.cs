@@ -63,6 +63,29 @@ namespace PregnancyData.Dao
 			connect.preg_guidess.Remove(item);
 			connect.SaveChanges();
 		}
+		public string resultReturn(preg_guides data)
+		{
+			string result = "{";
 
+			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
+			{
+				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
+				var propertyValue = data.GetType().GetProperty(propertyName).GetValue(data, null);
+				if (propertyName == "preg_guides_type")
+				{
+
+				}
+				else if (propertyName == "preg_page")
+				{
+
+				}
+				else
+				{
+					result += @"""" + propertyName + @""":""" + propertyValue.ToString() + @""",";
+				}
+			}
+			result += "}";
+			return result;
+		}
 	}
 }

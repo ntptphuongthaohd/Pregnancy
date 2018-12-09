@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using System.Text.RegularExpressions;
 
 namespace _01.Pregnacy_API.Controllers
 {
@@ -14,6 +15,7 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		PageDao dao = new PageDao();
 		// GET api/values
+		[Authorize]
 		public HttpResponseMessage Get([FromBody]preg_page data)
 		{
 			try
@@ -53,6 +55,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// GET api/values/5
+		[Authorize]
 		public HttpResponseMessage Get(string id)
 		{
 			try
@@ -76,6 +79,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// POST api/values
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Post([FromBody]preg_page data)
 		{
 			try
@@ -100,9 +104,9 @@ namespace _01.Pregnacy_API.Controllers
 
 
 		// PUT api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Put(string id, [FromBody]preg_page dataUpdate)
 		{
-
 			try
 			{
 				if (dataUpdate != null)
@@ -130,6 +134,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// DELETE api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Delete(string id)
 		{
 			//lstStrings[id] = value;

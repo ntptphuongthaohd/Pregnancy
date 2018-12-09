@@ -20,6 +20,8 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		GuidesDao dao = new GuidesDao();
 		// GET api/values
+
+		[Authorize]
 		public HttpResponseMessage Get([FromBody]preg_guides data)
 		{
 			try
@@ -59,6 +61,8 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// GET api/values/5
+
+		[Authorize]
 		public HttpResponseMessage Get(string id)
 		{
 			try
@@ -82,6 +86,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// POST api/values
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Post([FromBody]preg_guides data)
 		{
 			try
@@ -105,6 +110,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// PUT api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Put(string id, [FromBody]preg_guides dataUpdate)
 		{
 			//lstStrings[id] = value;
@@ -133,6 +139,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// DELETE api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Delete(string id)
 		{
 			//lstStrings[id] = value;

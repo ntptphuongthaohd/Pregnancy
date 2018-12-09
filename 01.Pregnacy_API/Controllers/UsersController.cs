@@ -10,7 +10,6 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using PregnancyData.Entity;
 using System.Text;
-using System.Security.Cryptography;
 using PregnancyData.Dao;
 
 namespace _01.Pregnacy_API.Controllers
@@ -19,6 +18,7 @@ namespace _01.Pregnacy_API.Controllers
 	{
 		UserDao dao = new UserDao();
 		// GET api/values
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Get([FromBody]preg_user data)
 		{
 			try
@@ -58,6 +58,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// GET api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Get(string id)
 		{
 			try
@@ -81,13 +82,14 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// POST api/values
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Post([FromBody]preg_user data)
 		{
 			try
 			{
 				if (data != null)
 				{
-					data.password = MD5Hash(data.password);
+					data.password = SysMethod.MD5Hash(data.password);
 					dao.InsertData(data);
 					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
 				}
@@ -103,20 +105,21 @@ namespace _01.Pregnacy_API.Controllers
 				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
-		public static string MD5Hash(string input)
-		{
-			StringBuilder hash = new StringBuilder();
-			MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-			byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+		//public static string MD5Hash(string input)
+		//{
+		//	StringBuilder hash = new StringBuilder();
+		//	MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+		//	byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
 
-			for (int i = 0; i < bytes.Length; i++)
-			{
-				hash.Append(bytes[i].ToString("x2"));
-			}
-			return hash.ToString();
-		}
+		//	for (int i = 0; i < bytes.Length; i++)
+		//	{
+		//		hash.Append(bytes[i].ToString("x2"));
+		//	}
+		//	return hash.ToString();
+		//}
 
 		// PUT api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Put(string id, [FromBody]preg_user dataUpdate)
 		{
 			//lstStrings[id] = value;
@@ -127,7 +130,7 @@ namespace _01.Pregnacy_API.Controllers
 					preg_user user = new preg_user();
 					user = dao.GetUserByID(Convert.ToInt32(id));
 					user.avarta = dataUpdate.avarta;
-					user.password = MD5Hash(dataUpdate.password);
+					user.password = SysMethod.MD5Hash(dataUpdate.password);
 					user.phone = dataUpdate.phone;
 					user.social_type = dataUpdate.social_type;
 					user.first_name = dataUpdate.first_name;
@@ -152,6 +155,7 @@ namespace _01.Pregnacy_API.Controllers
 		}
 
 		// DELETE api/values/5
+		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Delete(string id)
 		{
 			//lstStrings[id] = value;
