@@ -18,37 +18,31 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
+                IEnumerable<preg_answer> result;
 				if (data != null)
 				{
-					IEnumerable<preg_answer> result = dao.GetItemsByParams(data);
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetItemsByParams(data);
+					
 				}
 				else
 				{
-					IEnumerable<preg_answer> result = dao.GetListItem();
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					result = dao.GetListItem();
 				}
+
+                if (result.Count() > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                else
+                {
+                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                }
 			}
 			catch (Exception ex)
 			{
 				HttpError err = new HttpError(ex.Message);
-				return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
@@ -72,7 +66,7 @@ namespace _01.Pregnacy_API.Controllers
 			catch (Exception ex)
 			{
 				HttpError err = new HttpError(ex.Message);
-				return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
 
@@ -90,7 +84,7 @@ namespace _01.Pregnacy_API.Controllers
 				else
 				{
 					HttpError err = new HttpError(SysConst.DATA_EMPTY);
-					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
 			catch (Exception ex)
@@ -112,6 +106,10 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_answer answer = new preg_answer();
 					answer = dao.GetItemByID(Convert.ToInt32(id));
+                    if (answer== null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                    }
 					answer.answerdate = dataUpdate.answerdate;
 					answer.content = dataUpdate.content;
 					answer.preg_user = dataUpdate.preg_user;
@@ -142,7 +140,12 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(Convert.ToInt32(id));
+                preg_answer item = dao.GetItemByID(Convert.ToInt32(id));
+                if (item == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                }
+                dao.DeleteData(item);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)

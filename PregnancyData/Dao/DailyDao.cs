@@ -73,9 +73,9 @@ namespace PregnancyData.Dao
             connect.SaveChanges();
         }
 
-        public void DeleteData(int id)
+        public void DeleteData(preg_daily item)
         {
-            preg_daily item = GetItemByID(id);
+          
             connect.preg_dailys.Remove(item);
             connect.SaveChanges();
         }

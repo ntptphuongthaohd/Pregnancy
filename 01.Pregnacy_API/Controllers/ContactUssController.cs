@@ -18,32 +18,26 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
+                IEnumerable<preg_cotact_us> result;
 				if (data != null)
 				{
-					IEnumerable<preg_cotact_us> result = dao.GetItemsByParams(data);
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetItemsByParams(data);
+					
 				}
 				else
 				{
-					IEnumerable<preg_cotact_us> result = dao.GetListItem();
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					result = dao.GetListItem();
+					
 				}
+                if (result.Count() > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                else
+                {
+                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                }
 			}
 			catch (Exception ex)
 			{
@@ -111,6 +105,10 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_cotact_us cotact_us = new preg_cotact_us();
 					cotact_us = dao.GetItemByID(Convert.ToInt32(id));
+                    if (cotact_us == null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                    }
 					cotact_us.user_id = dataUpdate.user_id;
 					cotact_us.email = dataUpdate.email;
 					cotact_us.message = dataUpdate.message;
@@ -140,7 +138,12 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(Convert.ToInt32(id));
+                preg_cotact_us cotact_us = dao.GetItemByID(Convert.ToInt32(id));
+                if (cotact_us == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                }
+                dao.DeleteData(cotact_us);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)

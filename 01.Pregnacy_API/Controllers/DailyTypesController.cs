@@ -18,32 +18,26 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
+                IEnumerable<preg_daily_type> result;
 				if (data != null)
 				{
-					IEnumerable<preg_daily_type> result = dao.GetItemsByParams(data);
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetItemsByParams(data);
+					
 				}
 				else
 				{
-					IEnumerable<preg_daily_type> result = dao.GetListItem();
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetListItem();
+					
 				}
+                if (result.Count() > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                else
+                {
+                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                }
 			}
 			catch (Exception ex)
 			{
@@ -111,6 +105,10 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_daily_type daily_type = new preg_daily_type();
 					daily_type = dao.GetItemByID(Convert.ToInt32(id));
+                    if (daily_type == null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                    }
 					daily_type.preg_daily = dataUpdate.preg_daily;
 					daily_type.type = dataUpdate.type;
 
@@ -137,7 +135,12 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(Convert.ToInt32(id));
+                preg_daily_type daily_type = dao.GetItemByID(Convert.ToInt32(id));
+                if (daily_type == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                }
+                dao.DeleteData(daily_type);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)

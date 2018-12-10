@@ -12,11 +12,21 @@ namespace _01.Pregnacy_API
 {
 	public class MyAuthorizationServerProvider : OAuthAuthorizationServerProvider
 	{
+		/// <summary>
+		/// Validate that the origin of the request is a registered client_id
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
 		public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
 		{
 			context.Validated();
 		}
 
+		/// <summary>
+		/// Validate provided username and password when the grant_type is set to "password".
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
 		public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
 		{
 			using (PregnancyEntity connect = new PregnancyEntity())

@@ -53,9 +53,9 @@ namespace PregnancyData.Dao
 			connect.SaveChanges();
 		}
 
-		public void DeleteData(int id)
+		public void DeleteData( preg_appointment_baby_heart item)
 		{
-			preg_appointment_baby_heart item = GetItemByID(id);
+			
 			connect.preg_appointment_baby_hearts.Remove(item);
 			connect.SaveChanges();
 		}

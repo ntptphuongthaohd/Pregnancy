@@ -25,32 +25,26 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
+                IEnumerable<preg_my_birth_plan> result;
 				if (data != null)
 				{
-					IEnumerable<preg_my_birth_plan> result = dao.GetItemsByParams(data);
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetItemsByParams(data);
+					
 				}
 				else
 				{
-					IEnumerable<preg_my_birth_plan> result = dao.GetListItem();
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetListItem();
+					
 				}
+                if (result.Count() > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                else
+                {
+                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                }
 			}
 			catch (Exception ex)
 			{
@@ -118,6 +112,10 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_my_birth_plan my_birth_plan = new preg_my_birth_plan();
 					my_birth_plan = dao.GetItemByID(Convert.ToInt32(id));
+                    if (my_birth_plan == null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                    }
 					my_birth_plan.my_birth_plan_type_id = dataUpdate.my_birth_plan_type_id;
 					my_birth_plan.user_id = dataUpdate.user_id;
 					my_birth_plan.icon = dataUpdate.icon;
@@ -145,7 +143,12 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(Convert.ToInt32(id));
+                preg_my_birth_plan item = dao.GetItemByID(Convert.ToInt32(id));
+                if (item == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                }
+                dao.DeleteData(item);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)

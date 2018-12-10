@@ -61,10 +61,10 @@ namespace PregnancyData.Dao
 			connect.SaveChanges();
 		}
 
-		public void DeleteData(int id)
+        public void DeleteData(preg_auth item)
 		{
-			preg_auth auth = GetItemByID(id);
-			connect.preg_auths.Remove(auth);
+
+            connect.preg_auths.Remove(item);
 			connect.SaveChanges();
 		}
 
