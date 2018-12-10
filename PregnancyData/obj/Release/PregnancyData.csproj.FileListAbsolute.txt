@@ -50,3 +50,13 @@ E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\bin\EntityFrame
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.csprojResolveAssemblyReference.cache
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.dll
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.pdb
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\PregnancyData.dll.config
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\PregnancyData.dll
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\PregnancyData.pdb
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\EntityFramework.dll
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\EntityFramework.SqlServer.dll
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\EntityFramework.xml
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\bin\EntityFramework.SqlServer.xml
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.csprojResolveAssemblyReference.cache
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.dll
+E:\02.WSOFTPRO\07.Pregnacy_ASPNet\07.Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.pdb

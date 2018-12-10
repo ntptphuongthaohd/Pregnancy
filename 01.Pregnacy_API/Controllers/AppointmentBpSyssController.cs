@@ -18,32 +18,25 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
+                IEnumerable<preg_appointment_bp_sys> result;
 				if (data != null)
 				{
-					IEnumerable<preg_appointment_bp_sys> result = dao.GetItemsByParams(data);
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetItemsByParams(data);
 				}
 				else
 				{
-					IEnumerable<preg_appointment_bp_sys> result = dao.GetListItem();
-					if (result.Count() > 0)
-					{
-						return Request.CreateResponse(HttpStatusCode.OK, result);
-					}
-					else
-					{
-						HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-						return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-					}
+					 result = dao.GetListItem();
+					
 				}
+                if (result.Count() > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                else
+                {
+                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+                }
 			}
 			catch (Exception ex)
 			{
@@ -111,6 +104,11 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_appointment_bp_sys appointment_bp_sys = new preg_appointment_bp_sys();
 					appointment_bp_sys = dao.GetItemByID(Convert.ToInt32(id));
+                    if (appointment_bp_sys == null)
+                    {
+
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                    }
 					appointment_bp_sys.value = dataUpdate.value;
 
 					dao.UpdateData(appointment_bp_sys);
@@ -136,7 +134,13 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-				dao.DeleteData(Convert.ToInt32(id));
+                preg_appointment_bp_sys appointment_bp_sys = dao.GetItemByID(Convert.ToInt32(id));
+                if (appointment_bp_sys == null)
+                {
+
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+                }
+                dao.DeleteData(appointment_bp_sys);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)
