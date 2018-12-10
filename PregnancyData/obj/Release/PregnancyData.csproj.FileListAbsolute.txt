@@ -50,15 +50,3 @@ E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\bin\EntityFrame
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.csprojResolveAssemblyReference.cache
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.dll
 E:\02.WSOFTPRO\07.Pregnacy_ASPNet\05Code\Pregnancy\PregnancyData\obj\Release\PregnancyData.pdb
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\PregnancyData.dll.config
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\PregnancyData.dll
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\PregnancyData.pdb
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\EntityFramework.dll
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\EntityFramework.SqlServer.dll
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\EntityFramework.xml
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\bin\EntityFramework.SqlServer.xml
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\obj\Release\PregnancyData.csprojAssemblyReference.cache
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\obj\Release\PregnancyData.csproj.CoreCompileInputs.cache
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\obj\Release\PregnancyData.csproj.CopyComplete
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\obj\Release\PregnancyData.dll
-D:\WSoftPro\Git\Ver1\Pregnancy - Change\PregnancyData\obj\Release\PregnancyData.pdb
