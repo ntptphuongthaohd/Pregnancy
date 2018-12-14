@@ -87,15 +87,22 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
-				if (data != null)
+				if (data.phone != null && data.password != null)
 				{
 					data.password = SysMethod.MD5Hash(data.password);
-					dao.InsertData(data);
-					return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+					if (dao.InsertData(data))
+					{
+						return Request.CreateResponse(HttpStatusCode.Created, SysConst.DATA_INSERT_SUCCESS);
+					}
+					else
+					{
+						HttpError err = new HttpError(SysConst.PHONE_EXIST);
+						return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
+					}
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.PHONE_PASSWORD_NOT_NULL);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
@@ -105,18 +112,6 @@ namespace _01.Pregnacy_API.Controllers
 				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}
-		//public static string MD5Hash(string input)
-		//{
-		//	StringBuilder hash = new StringBuilder();
-		//	MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-		//	byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
-
-		//	for (int i = 0; i < bytes.Length; i++)
-		//	{
-		//		hash.Append(bytes[i].ToString("x2"));
-		//	}
-		//	return hash.ToString();
-		//}
 
 		// PUT api/values/5
 		[Authorize(Roles = "dev, admin")]
@@ -129,21 +124,23 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_user user = new preg_user();
 					user = dao.GetUserByID(Convert.ToInt32(id));
-					user.avarta = dataUpdate.avarta;
 					user.password = SysMethod.MD5Hash(dataUpdate.password);
 					user.phone = dataUpdate.phone;
-					user.social_type = dataUpdate.social_type;
+					user.social_type_id = dataUpdate.social_type_id;
 					user.first_name = dataUpdate.first_name;
 					user.last_name = dataUpdate.last_name;
 					user.you_are_the = dataUpdate.you_are_the;
 					user.location = dataUpdate.location;
 					user.status = dataUpdate.status;
+					user.avarta = dataUpdate.avarta;
+					user.email = dataUpdate.email;
+
 					dao.UpdateData(user);
 					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
@@ -158,7 +155,6 @@ namespace _01.Pregnacy_API.Controllers
 		[Authorize(Roles = "dev, admin")]
 		public HttpResponseMessage Delete(string id)
 		{
-			//lstStrings[id] = value;
 			try
 			{
 				dao.DeleteData(Convert.ToInt32(id));

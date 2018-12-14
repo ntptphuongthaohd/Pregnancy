@@ -83,7 +83,7 @@ namespace _01.Pregnacy_API.Controllers
                 }
                 else
                 {
-                    HttpError err = new HttpError(SysConst.DATA_EMPTY);
+                    HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
                 }
             }
@@ -109,7 +109,7 @@ namespace _01.Pregnacy_API.Controllers
                         return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
                     }
                     Help.help_category_id = dataUpdate.help_category_id;
-                    Help.hingline_image = dataUpdate.hingline_image;
+                    Help.image = dataUpdate.image;
                     Help.description = dataUpdate.description;
 
                     dao.UpdateData(Help);
@@ -117,7 +117,7 @@ namespace _01.Pregnacy_API.Controllers
                 }
                 else
                 {
-                    HttpError err = new HttpError(SysConst.DATA_EMPTY);
+                    HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
                 }
             }

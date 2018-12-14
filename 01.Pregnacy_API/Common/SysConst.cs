@@ -20,9 +20,13 @@ public class SysConst
 	#endregion
 
 	#region Error Messages
+	public static string ADMIN_DONT_HAVE_PROFILE = "You are admin. You dont have a profile.";
 	public static string DATA_NOT_FOUND = "Data not found.";
-	public static string DATA_EMPTY = "Data empty.";
+	public static string DATA_NOT_EMPTY = "Data must not be empty.";
+	public static string DATA_EXIST = "Data already exist.";
 	public static string ID_MUST_INTEGER = "ID must be an integer.";
+	public static string PHONE_EXIST = "Phone already exist.";
+	public static string PHONE_PASSWORD_NOT_NULL = "Phone and password cannot be null.";
 	public static string DATA_INSERT_SUCCESS = "Data insert succeed.";
 	public static string DATA_INSERT_FAIL = "Data insert failed.";
 	public static string DATA_UPDATE_SUCCESS = "Data update succeed.";

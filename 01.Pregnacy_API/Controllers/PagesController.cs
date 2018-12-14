@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace _01.Pregnacy_API.Controllers
 {
@@ -91,7 +92,7 @@ namespace _01.Pregnacy_API.Controllers
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
@@ -113,16 +114,16 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_page page = new preg_page();
 					page = dao.GetItemByID(Convert.ToInt32(id));
-					page.content = dataUpdate.content;
-					page.preg_guides = dataUpdate.preg_guides;
 					page.title = dataUpdate.title;
+					page.content = dataUpdate.content;
+					page.page_image = dataUpdate.page_image;
 
 					dao.UpdateData(page);
 					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}

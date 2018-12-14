@@ -18,26 +18,24 @@ namespace _01.Pregnacy_API.Controllers
 		{
 			try
 			{
-                IEnumerable<preg_daily> result;
+				IEnumerable<preg_daily> result;
 				if (data != null)
 				{
-					 result = dao.GetItemsByParams(data);
-					
+					result = dao.GetItemsByParams(data);
 				}
 				else
 				{
-					 result = dao.GetListItem();
-				
+					result = dao.GetListItem();
 				}
-                if (result.Count() > 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                else
-                {
-                    HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
-                }
+				if (result.Count() > 0)
+				{
+					return Request.CreateResponse(HttpStatusCode.OK, result);
+				}
+				else
+				{
+					HttpError err = new HttpError(SysConst.DATA_NOT_FOUND);
+					return Request.CreateErrorResponse(HttpStatusCode.NotFound, err);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -83,7 +81,7 @@ namespace _01.Pregnacy_API.Controllers
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
@@ -106,25 +104,23 @@ namespace _01.Pregnacy_API.Controllers
 				{
 					preg_daily daily = new preg_daily();
 					daily = dao.GetItemByID(Convert.ToInt32(id));
-                    if (daily== null)
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
-                    }
-					daily.daily_relation = dataUpdate.daily_relation;
+					if (daily == null)
+					{
+						return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+					}
 					daily.daily_type_id = dataUpdate.daily_type_id;
-					daily.description = dataUpdate.description;
-					daily.hingline_image = dataUpdate.hingline_image;
-					daily.preg_daily_like = dataUpdate.preg_daily_like;
-					daily.preg_daily_type = dataUpdate.preg_daily_type;
-					daily.short_description = dataUpdate.short_description;
 					daily.title = dataUpdate.title;
+					daily.highline_image = dataUpdate.highline_image;
+					daily.short_description = dataUpdate.short_description;
+					daily.description = dataUpdate.description;
+					daily.daily_relation = dataUpdate.daily_relation;
 
 					dao.UpdateData(daily);
 					return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_UPDATE_SUCCESS);
 				}
 				else
 				{
-					HttpError err = new HttpError(SysConst.DATA_EMPTY);
+					HttpError err = new HttpError(SysConst.DATA_NOT_EMPTY);
 					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 				}
 			}
@@ -142,12 +138,12 @@ namespace _01.Pregnacy_API.Controllers
 			//lstStrings[id] = value;
 			try
 			{
-                preg_daily daily = dao.GetItemByID(Convert.ToInt32(id));
-                if (daily == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
-                }
-                dao.DeleteData(daily);
+				preg_daily daily = dao.GetItemByID(Convert.ToInt32(id));
+				if (daily == null)
+				{
+					return Request.CreateResponse(HttpStatusCode.NotFound, SysConst.DATA_NOT_FOUND);
+				}
+				dao.DeleteData(daily);
 				return Request.CreateResponse(HttpStatusCode.Accepted, SysConst.DATA_DELETE_SUCCESS);
 			}
 			catch (Exception ex)

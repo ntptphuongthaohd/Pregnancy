@@ -17,16 +17,16 @@ namespace PregnancyData.Dao
 
 		public IEnumerable<preg_time_line> GetListItem()
 		{
-			return connect.preg_time_lines;
+			return connect.preg_time_line;
 		}
 
 		public preg_time_line GetItemByID(int id)
 		{
-			return connect.preg_time_lines.Where(c => c.id == id).FirstOrDefault();
+			return connect.preg_time_line.Where(c => c.id == id).FirstOrDefault();
 		}
 		public IEnumerable<preg_time_line> GetItemsByParams(preg_time_line data)
 		{
-			IEnumerable<preg_time_line> result = connect.preg_time_lines;
+			IEnumerable<preg_time_line> result = connect.preg_time_line;
 			for (int i = 0; i < data.GetType().GetProperties().ToList().Count(); i++)
 			{
 				string propertyName = data.GetType().GetProperties().ToList()[i].Name;
@@ -60,7 +60,7 @@ namespace PregnancyData.Dao
 		}
 		public void InsertData(preg_time_line item)
 		{
-			connect.preg_time_lines.Add(item);
+			connect.preg_time_line.Add(item);
 			connect.SaveChanges();
 		}
 
@@ -72,9 +72,8 @@ namespace PregnancyData.Dao
 		public void DeleteData(int id)
 		{
 			preg_time_line item = GetItemByID(id);
-			connect.preg_time_lines.Remove(item);
+			connect.preg_time_line.Remove(item);
 			connect.SaveChanges();
 		}
-
 	}
 }
