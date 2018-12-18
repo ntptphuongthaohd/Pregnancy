@@ -38,7 +38,7 @@ namespace PregnancyData.Dao
 				}
 				else if (propertyName == "title" && propertyValue != null)
 				{
-					result = result.Where(c => c.title == Convert.ToInt32(propertyValue));
+					result = result.Where(c => c.title == propertyValue.ToString());
 				}
 				else if (propertyName == "content" && propertyValue != null)
 				{

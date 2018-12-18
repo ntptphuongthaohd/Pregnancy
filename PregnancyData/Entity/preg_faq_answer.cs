@@ -8,7 +8,6 @@ namespace PregnancyData.Entity
 
     public partial class preg_faq_answer
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         public int faq_id { get; set; }

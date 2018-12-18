@@ -18,6 +18,8 @@ namespace PregnancyData.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int todo_id { get; set; }
 
+        public int? status { get; set; }
+
         public virtual preg_todo preg_todo { get; set; }
 
         public virtual preg_todo preg_todo1 { get; set; }

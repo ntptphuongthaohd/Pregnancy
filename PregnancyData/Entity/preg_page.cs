@@ -16,7 +16,8 @@ namespace PregnancyData.Entity
 
         public int id { get; set; }
 
-        public int? title { get; set; }
+        [StringLength(1024)]
+        public string title { get; set; }
 
         [StringLength(1024)]
         public string content { get; set; }

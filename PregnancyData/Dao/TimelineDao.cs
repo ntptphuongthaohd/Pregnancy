@@ -51,9 +51,9 @@ namespace PregnancyData.Dao
 				{
 					result = result.Where(c => c.position == propertyValue.ToString());
 				}
-				else if (propertyName == "time_line_id" && propertyValue != null)
+				else if (propertyName == "time_frame_id" && propertyValue != null)
 				{
-					result = result.Where(c => c.time_line_id == Convert.ToInt32(propertyValue));
+					result = result.Where(c => c.time_frame_id == Convert.ToInt32(propertyValue));
 				}
 			}
 			return result;

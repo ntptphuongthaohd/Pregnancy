@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Threading.Tasks;
 
 namespace _01.Pregnacy_API.Controllers
 {
@@ -15,7 +16,7 @@ namespace _01.Pregnacy_API.Controllers
 		// GET api/values
 		[Authorize]
 		[HttpGet]
-		public HttpResponseMessage Get([FromBody]preg_answer data)
+		public async Task<HttpResponseMessage> Get([FromBody]preg_answer data)
 		{
 			try
 			{

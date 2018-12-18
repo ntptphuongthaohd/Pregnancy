@@ -162,7 +162,7 @@ namespace _01.Pregnacy_API.Controllers
 			}
 			catch (Exception ex)
 			{
-				HttpError err = new HttpError(ex.Message);
+				HttpError err = new HttpError(String.Format(SysConst.ITEM_ID_NOT_EXIST, id));
 				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
 			}
 		}

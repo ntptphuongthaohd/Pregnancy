@@ -14,7 +14,6 @@ namespace PregnancyData.Entity
             preg_user_shopping_cart = new HashSet<preg_user_shopping_cart>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         [StringLength(1024)]

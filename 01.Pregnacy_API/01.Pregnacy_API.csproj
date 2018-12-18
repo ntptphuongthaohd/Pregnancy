@@ -167,6 +167,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AuthorizeAttribute.cs" />
+    <Compile Include="Common\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Common\SysConst.cs" />
     <Compile Include="Common\SysMethod.cs" />
     <Compile Include="Controllers\AnswersController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\ContractionController.cs" />
     <Compile Include="Controllers\FaqAnswerController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HospitalBagItemsController.cs" />
     <Compile Include="Controllers\KickResultsController.cs" />
     <Compile Include="Controllers\MyBirthPlanItemsController.cs" />

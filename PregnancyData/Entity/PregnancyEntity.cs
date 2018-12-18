@@ -323,6 +323,10 @@ namespace PregnancyData.Entity
 				.HasForeignKey(e => e.my_weight_type_id);
 
 			modelBuilder.Entity<preg_page>()
+				.Property(e => e.title)
+				.IsUnicode(false);
+
+			modelBuilder.Entity<preg_page>()
 				.Property(e => e.content)
 				.IsUnicode(false);
 
@@ -419,7 +423,7 @@ namespace PregnancyData.Entity
 			modelBuilder.Entity<preg_time_frame>()
 				.HasMany(e => e.preg_time_line)
 				.WithOptional(e => e.preg_time_frame)
-				.HasForeignKey(e => e.time_line_id);
+				.HasForeignKey(e => e.time_frame_id);
 
 			modelBuilder.Entity<preg_time_line>()
 				.Property(e => e.title)

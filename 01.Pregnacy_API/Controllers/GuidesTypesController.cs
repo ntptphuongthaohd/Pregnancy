@@ -34,7 +34,6 @@ namespace _01.Pregnacy_API.Controllers
 				else
 				{
 					 result = dao.GetListItem();
-					
 				}
                 if (result.Count() > 0)
                 {

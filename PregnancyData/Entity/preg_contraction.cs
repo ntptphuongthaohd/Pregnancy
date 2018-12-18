@@ -8,7 +8,6 @@ namespace PregnancyData.Entity
 
     public partial class preg_contraction
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         public int? user_id { get; set; }
